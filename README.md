@@ -2,7 +2,7 @@
 
 Materiais e dados para a aula de **GTFS e outros dados abertos para planeamento de transportes**, módulo do workshop [Digitalizing Mobility - T.U. Berlin goes to Braga](https://www.academy-tu.berlin/en/shop/digitalizing-mobility/) do EIT Urban Mobility.
 
-![](images/EIT_logo-EU1-horizontal_1.png){fig-align="center"}
+![](images/EIT_logo-EU1-horizontal_1.png)
 
 ## **GTFS e outros dados abertos para planeamento de transportes**
 
