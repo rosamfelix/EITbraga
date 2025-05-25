@@ -260,12 +260,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
 <p>O <strong>R</strong> ou <strong>R stats</strong> (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.</p>
-<p>Os links para download estão no <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a> (aka CRAN). A versão mais recente é a <code>4.4.2</code>, mas pode usar <code>&gt;= 4.1.x</code> se já a tiver instalada.</p>
+<p>Os links para download estão no <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a> (aka CRAN). A versão mais recente é a <code>4.5.0</code>, mas pode usar <code>&gt;= 4.1.x</code> se já a tiver instalada.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Mac</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p><a href="https://cran.r-project.org/bin/windows/base/R-4.4.2-win.exe">Download R-4.4.2 para Windows</a> e correr o ficheiro executável.</p>
+<p><a href="https://cran.rstudio.com/bin/windows/base/R-4.5.0-win.exe">Download R-4.5.0 para Windows</a> e correr o ficheiro executável.</p>
 <div class="callout callout-style-default callout-important no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -276,13 +276,13 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Deverá também instalar o <a href="https://cran.r-project.org/bin/windows/Rtools/rtools44/rtools.html">Rtools</a>, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.<br>
+<p>Deverá também instalar o <a href="https://cran.rstudio.com/bin/windows/Rtools/rtools45/rtools.html">Rtools</a>, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.<br>
 Escolha o segundo link para processador ARM (mais recente), e o primeiro link caso contrário.</p>
 </div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><a href="https://cran.r-project.org/bin/macosx/">Download R-4.4.2 para MacOX</a>. Terá de escolher entre a versão <em>arm64</em> ou a versão <em>x86-64</em>.</p>
+<p><a href="https://cran.r-project.org/bin/macosx/">Download R-4.5.0 para MacOX</a>. Terá de escolher entre a versão <em>arm64</em> ou a versão <em>x86-64</em>.</p>
 <p>Transfira o ficheiro <code>.pkg</code> e instale-o como habitualmente.</p>
 </div>
 </div>
@@ -297,10 +297,10 @@ Escolha o segundo link para processador ARM (mais recente), e o primeiro link ca
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Windows 10/11</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">MacOS</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p><a href="https://download1.rstudio.org/electron/windows/RStudio-2024.09.1-394.exe">Download RStudio 2024.09</a> e correr o ficheiro executável.</p>
+<p><a href="https://download1.rstudio.org/electron/windows/RStudio-2025.05.0-496.exe">Download RStudio 2025.05</a> e correr o ficheiro executável.</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p><a href="https://download1.rstudio.org/electron/macos/RStudio-2024.09.1-394.dmg">Download RStudio 2024.09</a> e instale-o como habitualmente.</p>
+<p><a href="https://download1.rstudio.org/electron/macos/RStudio-2025.05.0-496.dmg">Download RStudio 2025.05</a> e instale-o como habitualmente.</p>
 </div>
 </div>
 </div>
@@ -341,12 +341,10 @@ Escolha o segundo link para processador ARM (mais recente), e o primeiro link ca
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">rje_consent</span>(<span class="at">provided =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># instalar Java 21</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_quick_install</span>(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="dv">21</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution =</span> <span class="st">'Corretto'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># verificar se o Java foi instalado com sucesso</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_check_version_rjava</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_quick_install</span>(<span class="at">version =</span> <span class="dv">21</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># verificar se o Java foi instalado com sucesso</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_check_version_rjava</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Em alternativa</strong>, pode transferir e instalar manualmente o JDK 21.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
@@ -1007,21 +1005,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>O **R** ou **R stats** (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>Os links para download estão no <span class="co">[</span><span class="ot">The Comprehensive R Archive Network</span><span class="co">](https://cran.r-project.org/)</span> (aka CRAN). A versão mais recente é a <span class="in">`4.4.2`</span>, mas pode usar <span class="in">`&gt;= 4.1.x`</span> se já a tiver instalada.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>Os links para download estão no <span class="co">[</span><span class="ot">The Comprehensive R Archive Network</span><span class="co">](https://cran.r-project.org/)</span> (aka CRAN). A versão mais recente é a <span class="in">`4.5.0`</span>, mas pode usar <span class="in">`&gt;= 4.1.x`</span> se já a tiver instalada.</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>:::: {.panel-tabset .nav-pills}</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Windows</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download R-4.4.2 para Windows</span><span class="co">](https://cran.r-project.org/bin/windows/base/R-4.4.2-win.exe)</span> e correr o ficheiro executável.</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download R-4.5.0 para Windows</span><span class="co">](https://cran.rstudio.com/bin/windows/base/R-4.5.0-win.exe)</span> e correr o ficheiro executável.</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>::: {.callout-important icon="false"}</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>Deverá também instalar o <span class="co">[</span><span class="ot">Rtools</span><span class="co">](https://cran.r-project.org/bin/windows/Rtools/rtools44/rtools.html)</span>, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>Deverá também instalar o <span class="co">[</span><span class="ot">Rtools</span><span class="co">](https://cran.rstudio.com/bin/windows/Rtools/rtools45/rtools.html)</span>, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>Escolha o segundo link para processador ARM (mais recente), e o primeiro link caso contrário.</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mac</span></span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download R-4.4.2 para MacOX</span><span class="co">](https://cran.r-project.org/bin/macosx/)</span>. Terá de escolher entre a versão *arm64* ou a versão *x86-64*.</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download R-4.5.0 para MacOX</span><span class="co">](https://cran.r-project.org/bin/macosx/)</span>. Terá de escolher entre a versão *arm64* ou a versão *x86-64*.</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Transfira o ficheiro <span class="in">`.pkg`</span> e instale-o como habitualmente.</span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>::::</span>
@@ -1037,11 +1035,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset .nav-pills}</span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Windows 10/11</span></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download RStudio 2024.09</span><span class="co">](https://download1.rstudio.org/electron/windows/RStudio-2024.09.1-394.exe)</span> e correr o ficheiro executável.</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download RStudio 2025.05</span><span class="co">](https://download1.rstudio.org/electron/windows/RStudio-2025.05.0-496.exe)</span> e correr o ficheiro executável.</span>
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### MacOS</span></span>
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download RStudio 2024.09</span><span class="co">](https://download1.rstudio.org/electron/macos/RStudio-2024.09.1-394.dmg)</span> e instale-o como habitualmente.</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Download RStudio 2025.05</span><span class="co">](https://download1.rstudio.org/electron/macos/RStudio-2025.05.0-496.dmg)</span> e instale-o como habitualmente.</span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pacotes de R</span></span>
@@ -1085,21 +1083,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">rje_consent</span>(<span class="at">provided =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="co"># instalar Java 21</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_quick_install</span>(</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="dv">21</span>,</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution =</span> <span class="st">'Corretto'</span>)</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="co"># verificar se o Java foi instalado com sucesso</span></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_check_version_rjava</span>()</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_quick_install</span>(<span class="at">version =</span> <span class="dv">21</span>)</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="co"># verificar se o Java foi instalado com sucesso</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">java_check_version_rjava</span>()</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>**Em alternativa**, pode transferir e instalar manualmente o JDK 21.</span>
 <span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>**Em alternativa**, pode transferir e instalar manualmente o JDK 21.</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset .nav-pills}</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### Windows e MacOS</span></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>Aceda a <span class="co">[</span><span class="ot">Java Development Kit 21</span><span class="co">](https://jdk.java.net/archive/)</span>, transfira a última versão 21 correspondente ao seu sistema operativo e execute o ficheiro executável.</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset .nav-pills}</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Windows e MacOS</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>Aceda a <span class="co">[</span><span class="ot">Java Development Kit 21</span><span class="co">](https://jdk.java.net/archive/)</span>, transfira a última versão 21 correspondente ao seu sistema operativo e execute o ficheiro executável.</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

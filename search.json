@@ -224,7 +224,7 @@
     "href": "software.html",
     "title": "Software",
     "section": "",
-    "text": "R\nO R ou R stats (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.\nOs links para download estão no The Comprehensive R Archive Network (aka CRAN). A versão mais recente é a 4.4.2, mas pode usar &gt;= 4.1.x se já a tiver instalada.\nApós esta instalação, não é necessário abrir o R. Prossiga com a instalação do RStudio.",
+    "text": "R\nO R ou R stats (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.\nOs links para download estão no The Comprehensive R Archive Network (aka CRAN). A versão mais recente é a 4.5.0, mas pode usar &gt;= 4.1.x se já a tiver instalada.\nApós esta instalação, não é necessário abrir o R. Prossiga com a instalação do RStudio.",
     "crumbs": [
       "Software"
     ]
@@ -234,7 +234,7 @@
     "href": "software.html#r",
     "title": "Software",
     "section": "",
-    "text": "WindowsMac\n\n\nDownload R-4.4.2 para Windows e correr o ficheiro executável.\n\n\n\n\n\n\nImportante\n\n\n\nDeverá também instalar o Rtools, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\nEscolha o segundo link para processador ARM (mais recente), e o primeiro link caso contrário.\n\n\n\n\nDownload R-4.4.2 para MacOX. Terá de escolher entre a versão arm64 ou a versão x86-64.\nTransfira o ficheiro .pkg e instale-o como habitualmente.",
+    "text": "WindowsMac\n\n\nDownload R-4.5.0 para Windows e correr o ficheiro executável.\n\n\n\n\n\n\nImportante\n\n\n\nDeverá também instalar o Rtools, que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\nEscolha o segundo link para processador ARM (mais recente), e o primeiro link caso contrário.\n\n\n\n\nDownload R-4.5.0 para MacOX. Terá de escolher entre a versão arm64 ou a versão x86-64.\nTransfira o ficheiro .pkg e instale-o como habitualmente.",
     "crumbs": [
       "Software"
     ]
@@ -244,7 +244,7 @@
     "href": "software.html#rstudio",
     "title": "Software",
     "section": "RStudio",
-    "text": "RStudio\nO RStudio Desktop é um ambiente de desenvolvimento integrado (IDE) para o R. Inclui uma consola, um editor de código com realce para as funções de bases, bem como ferramentas para fazer gráficos, e análises estatísticas.\nO RStudio está disponível para descarregamento gratuito em Posit RStudio.\n\nWindows 10/11MacOS\n\n\nDownload RStudio 2024.09 e correr o ficheiro executável.\n\n\nDownload RStudio 2024.09 e instale-o como habitualmente.",
+    "text": "RStudio\nO RStudio Desktop é um ambiente de desenvolvimento integrado (IDE) para o R. Inclui uma consola, um editor de código com realce para as funções de bases, bem como ferramentas para fazer gráficos, e análises estatísticas.\nO RStudio está disponível para descarregamento gratuito em Posit RStudio.\n\nWindows 10/11MacOS\n\n\nDownload RStudio 2025.05 e correr o ficheiro executável.\n\n\nDownload RStudio 2025.05 e instale-o como habitualmente.",
     "crumbs": [
       "Software"
     ]
@@ -264,7 +264,7 @@
     "href": "software.html#java-development-kit",
     "title": "Software",
     "section": "Java Development Kit",
-    "text": "Java Development Kit\nPara utilizar o pacote {r5r} é necessário ter o Java Development Kit (JDK) 21 instalado no computador. Existem inúmeras implementações de código aberto do JDK. A maneira mais fácil de instalar o JDK é usando o novo pacote {rJavaEnv} no R.\n\n# verificar a versão de Java atualmente instalada (se existir) \nrJavaEnv::java_check_version_rjava()\n\n## se esta for a primeira vez que utiliza {rJavaEnv}, poderá ter de executar\n## este código abaixo para consentir a instalação de Java\nrJavaEnv::rje_consent(provided = TRUE)\n\n# instalar Java 21\nrJavaEnv::java_quick_install(\n  version = 21,\n  distribution = 'Corretto')\n\n# verificar se o Java foi instalado com sucesso\nrJavaEnv::java_check_version_rjava()\n\nEm alternativa, pode transferir e instalar manualmente o JDK 21.\n\nWindows e MacOS\n\n\nAceda a Java Development Kit 21, transfira a última versão 21 correspondente ao seu sistema operativo e execute o ficheiro executável.",
+    "text": "Java Development Kit\nPara utilizar o pacote {r5r} é necessário ter o Java Development Kit (JDK) 21 instalado no computador. Existem inúmeras implementações de código aberto do JDK. A maneira mais fácil de instalar o JDK é usando o novo pacote {rJavaEnv} no R.\n\n# verificar a versão de Java atualmente instalada (se existir) \nrJavaEnv::java_check_version_rjava()\n\n## se esta for a primeira vez que utiliza {rJavaEnv}, poderá ter de executar\n## este código abaixo para consentir a instalação de Java\nrJavaEnv::rje_consent(provided = TRUE)\n\n# instalar Java 21\nrJavaEnv::java_quick_install(version = 21)\n\n# verificar se o Java foi instalado com sucesso\nrJavaEnv::java_check_version_rjava()\n\nEm alternativa, pode transferir e instalar manualmente o JDK 21.\n\nWindows e MacOS\n\n\nAceda a Java Development Kit 21, transfira a última versão 21 correspondente ao seu sistema operativo e execute o ficheiro executável.",
     "crumbs": [
       "Software"
     ]
