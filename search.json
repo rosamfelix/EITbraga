@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Digitalizing Mobility Braga",
     "section": "",
-    "text": "Início\nMateriais e dados para as aulas de Literacia sobre dados abertos em transportes, módulo da Pós-Graduação Mobilidade 360º Gestão de Transportes do Iscte Executive Education.\n\n \n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\nNota\n\n\n\nEste website foi totalmente desenvolvido em R com Quarto.",
+    "text": "Início\nMateriais e dados para a aula de GTFS e outros dados abertos para planeamento de transportes, módulo do workshop Digitalizing Mobility - T.U. Berlin goes to Braga do EIT Urban Mobility.\n\n \n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\nNota\n\n\n\nEste website foi totalmente desenvolvido em R com Quarto.",
     "crumbs": [
       "Início"
     ]
@@ -14,37 +14,17 @@
     "href": "summary.html",
     "title": "1  Planeamento",
     "section": "",
-    "text": "1.1 Literacia sobre dados abertos em transportes",
+    "text": "1.1 GTFS e outros dados abertos para planeamento de transportes",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planeamento</span>"
     ]
   },
   {
-    "objectID": "summary.html#literacia-sobre-dados-abertos-em-transportes",
-    "href": "summary.html#literacia-sobre-dados-abertos-em-transportes",
+    "objectID": "summary.html#gtfs-e-outros-dados-abertos-para-planeamento-de-transportes",
+    "href": "summary.html#gtfs-e-outros-dados-abertos-para-planeamento-de-transportes",
     "title": "1  Planeamento",
     "section": "",
-    "text": "Introdução ao R\nImportação e limpeza de dados de transportes em R\nMapas interativos em R\nOs dados abertos em mobilidade e transportes\nExemplos nacionais e internacionais de análises com dados abertos\nIntrodução ao GTFS\nFontes de dados GTFS e tratamento\nRedes Viárias com OpenStreetMap\nAcessibilidade espacial em R\nExercício prático utilizando dados de operadora de transportes",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planeamento</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html#horário",
-    "href": "summary.html#horário",
-    "title": "1  Planeamento",
-    "section": "1.2 Horário",
-    "text": "1.2 Horário\nAs aulas decorrerão nos seguintes horários:\n\nQuinta-feira, 14 Novembro, 14h00-18h00\nQuarta-feira, 20 Novembro, 14h00-18h00\nQuinta-feira, 21 Novembro, 14h00-18h00",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planeamento</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html#zoom",
-    "href": "summary.html#zoom",
-    "title": "1  Planeamento",
-    "section": "1.3 Zoom",
-    "text": "1.3 Zoom\nAs aulas serão em modo remoto, via zoom, através do seguinte endereço:\nhttps://videoconf-colibri.zoom.us/my/rosamfelix",
+    "text": "Os dados abertos em mobilidade e transportes\nExemplos nacionais e internacionais de análises com dados abertos\nIntrodução ao GTFS\nFontes de dados GTFS e tratamento\nAcessibilidade espacial em R",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planeamento</span>"
     ]
@@ -304,7 +284,7 @@
     "href": "about.html",
     "title": "Sobre",
     "section": "",
-    "text": "Rosa Félix\nInvestigadora Senior e Professora convidada\nCERIS, Instituto Superior Técnico - Universidade de Lisboa\nWebsite | Google Scholar | Twitter | GitHub | Linkedin\nShort bio\nRosa Félix é investigadora sénior de pós-doutoramento no Instituto Superior Técnico - Universidade de Lisboa e membro do laboratório U-Shift, no Grupo de Investigação em Transportes do CERIS. Com formação em Engenharia de Planeamento Urbano, concluiu o doutoramento em Sistemas de Transportes em 2019 no Instituto Superior Técnico (programa MIT Portugal), e foi Visiting Scholar na Portland State University em 2017/18.\nRosa é uma investigadora na área da mobilidade ativa, e distingue-se em R e GIS. É uma entusiasta da utilização de código aberto e investigação reproduzível. As suas publicações incluem artigos sobre utilização da bicicleta e mudança de comportamentos, e soluções de código aberto para problemas específicos de SIG e mobilidade. Todos os anos, Rosa lecciona um curso de planeamento e conceção de infra-estruturas cicláveis para profissionais, e também ensina SIG para Transportes e Introdução à programação no Mestrado em Sistemas de Transportes.\nRosa tem trabalhado em múltiplos projetos de I&D e consultoria com municípios e indústria, como a Câmara Municipal de Lisboa (2019-2022) e a Transportes Metropolitanos de Lisboa (2023), no qual desenvolveu uma ferramenta digital para apoiar o planeamento da rede ciclável metropolitana, o biclaR, em colaboração com o Institute for Transport Studies da Universidade de Leeds.",
+    "text": "Rosa Félix\nInvestigadora Senior e Professora convidada\nCERIS, Instituto Superior Técnico - Universidade de Lisboa\nWebsite | Google Scholar | Twitter | GitHub | Linkedin\nShort bio\nRosa Félix é investigadora sénior de pós-doutoramento e Proferssora Convidada no Instituto Superior Técnico - Universidade de Lisboa e membro do laboratório U-Shift, no Grupo de Investigação em Transportes do CERIS. Com formação em Engenharia de Planeamento Urbano, concluiu o doutoramento em Sistemas de Transportes em 2019 no Instituto Superior Técnico (programa MIT Portugal), e foi Visiting Scholar na Portland State University em 2017/18.\nRosa é uma investigadora na área da mobilidade ativa, e distingue-se em R e GIS. É uma entusiasta da utilização de código aberto e investigação reproduzível. As suas publicações incluem artigos sobre utilização da bicicleta e mudança de comportamentos, e soluções de código aberto para problemas específicos de SIG e mobilidade. Todos os anos, Rosa lecciona um curso de planeamento e conceção de infra-estruturas cicláveis para profissionais, e também ensina SIG para Transportes e Introdução à programação no Mestrado em Sistemas de Transportes.\nRosa tem trabalhado em múltiplos projetos de I&D e consultoria com municípios e indústria, como a Câmara Municipal de Lisboa (2019-2022) e a Transportes Metropolitanos de Lisboa (2023), no qual desenvolveu uma ferramenta digital para apoiar o planeamento da rede ciclável metropolitana, o biclaR, em colaboração com o Institute for Transport Studies da Universidade de Leeds.",
     "crumbs": [
       "Sobre"
     ]
