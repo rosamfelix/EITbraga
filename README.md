@@ -1,26 +1,21 @@
 # PGmob360
 
-Materiais e dados para as aulas de **Literacia sobre dados abertos em transportes**, módulo da [Pós-Graduação Mobilidade 360º Gestão de Transportes](https://execed.iscte-iul.pt/applied-online-pos-graduacao-em-mobilidade-360-gestao-de-transportes) do Iscte Executive Education.
+Materiais e dados para a aula de **GTFS e outros dados abertos para planeamento de transportes**, módulo do workshop [Digitalizing Mobility - T.U. Berlin goes to Braga](https://www.academy-tu.berlin/en/shop/digitalizing-mobility/) do EIT Urban Mobility.
 
-![](images/clipboard-209231891.png)
+![](images/EIT_logo-EU1-horizontal_1.png){fig-align="center"}
 
-## Literacia sobre dados abertos em transportes
+## **GTFS e outros dados abertos para planeamento de transportes**
 
-1.  Introdução ao R
-2.  Importação e limpeza de dados de transportes em R
-3.  Mapas interativos em R
-4.  Os dados abertos em mobilidade e transportes
-5.  Exemplos nacionais e internacionais de análises com dados abertos
-6.  Introdução ao GTFS
-7.  Fontes de dados GTFS e tratamento
-8.  Acessibilidade espacial em R
-9.  Boas práticas de partilha e abertura de dados de mobilidade e transportes
-10. Exercício prático utilizando dados de operadora de transportes
+1.  Os dados abertos em mobilidade e transportes
+2.  Exemplos nacionais e internacionais de análises com dados abertos
+3.  Introdução ao GTFS
+4.  Fontes de dados GTFS e tratamento
+5.  Acessibilidade espacial em R
 
-Ver **website** em [rosamfelix.github.io/PGmob360](https://rosamfelix.github.io/PGmob360/)
+Ver **website** em [rosamfelix.github.io/EITbraga](https://rosamfelix.github.io/EITbraga)
 
 ### Citar como
 
 ```         
-Félix, R. (2024). Literacia sobre dados abertos em transportes - módulo da Pós-Graduação Mobilidade 360º Gestão de Transportes do ISCTE Executive Education. https://rosamfelix.github.io/PGmob360/
+Félix, R. (2025). GTFS e outros dados abertos para planeamento de transportes - workshop Digitalizing Mobility - T.U. Berlin goes to Braga do EIT Urban Mobility. https://rosamfelix.github.io/EITbraga/
 ```
