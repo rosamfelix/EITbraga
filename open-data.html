@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Dados Abertos em transportes – Digitalizing Mobility Braga</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./gtfs.html" rel="next">
+<link href="./software.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+<meta name="citation_title" content="[3]{.chapter-number}&nbsp; [Dados Abertos em transportes]{.chapter-title}">
+<meta name="citation_language" content="pt">
+<meta name="citation_reference" content="citation_title=Literate programming;,citation_author=Donald E. Knuth;,citation_publication_date=1984-05;,citation_cover_date=1984-05;,citation_year=1984;,citation_fulltext_html_url=https://doi.org/10.1093/comjnl/27.2.97;,citation_issue=2;,citation_doi=10.1093/comjnl/27.2.97;,citation_issn=0010-4620;,citation_volume=27;,citation_journal_title=Comput. J.;,citation_publisher=Oxford University Press, Inc.;">
+<meta name="citation_reference" content="citation_title=Mobilidade e funcionalidade do território nas Áreas Metropolitanas do Porto e de Lisboa: 2017;,citation_author=undefined INE;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_fulltext_html_url=https://www.ine.pt/xportal/xmain?xpid=INE&amp;amp;amp;xpgid=ine_publicacoes&amp;PUBLICACOESpub_boui=349495406&amp;PUBLICACOESmodo=2&amp;xlang=pt;,citation_isbn=978-989-25-0478-0;,citation_technical_report_institution=Instituto National de Estatística;">
+<meta name="citation_reference" content="citation_title=Censos 2021- XVI Recenseamento Geral da População. VI Recenseamento Geral da Habitação;,citation_author=undefined INE;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://censos.ine.pt/xurl/pub/65586079;,citation_isbn=978-989-25-0619-7;,citation_technical_report_institution=Instituto National de Estatística;">
+<meta name="citation_reference" content="citation_title=Spatial data science: With applications in R;,citation_author=Edzer Pebesma;,citation_author=Roger Bivand;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.1201/9780429459016;,citation_doi=10.1201/9780429459016;">
+<meta name="citation_reference" content="citation_title=Jittering: A computationally efficient method for generating realistic route networks from origin-destination data;,citation_author=Robin Lovelace;,citation_author=Rosa Félix;,citation_author=Dustin Carlino;,citation_publication_date=2022-04-08;,citation_cover_date=2022-04-08;,citation_year=2022;,citation_doi=10.32866/001c.33873;,citation_journal_title=Findings;,citation_publisher=Findings Press;">
+<meta name="citation_reference" content="citation_title=r5r: Rapid realistic routing on multimodal transport networks with r&amp;amp;amp;lt;sup&amp;gt;5&amp;lt;/sup&amp;gt; in r;,citation_author=Rafael H. M. Pereira;,citation_author=Marcus Saraiva;,citation_author=Daniel Herszenhut;,citation_author=Carlos Kaue Vieira Braga;,citation_author=Matthew Wigginton Conway;,citation_publication_date=2021-03-04;,citation_cover_date=2021-03-04;,citation_year=2021;,citation_doi=10.32866/001c.21262;,citation_journal_title=Findings;,citation_publisher=Findings Press;">
+<meta name="citation_reference" content="citation_title=Centr: Weighted and unweighted spatial centers;,citation_author=Ryan Zomorrodi;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://ryanzomorrodi.github.io/centr/;">
+<meta name="citation_reference" content="citation_title=Stplanr: A package for transport planning;,citation_author=Robin Lovelace;,citation_author=Richard Ellison;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_issue=2;,citation_doi=10.32614/RJ-2018-053;,citation_volume=10;,citation_journal_title=The R Journal;">
+<meta name="citation_reference" content="citation_title=Od: Manipulate and map origin-destination data;,citation_author=Robin Lovelace;,citation_author=Malcolm Morgan;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://github.com/itsleeds/od;">
+<meta name="citation_reference" content="citation_title=Introduction to r;,citation_author=Claudia A Engel;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=cengel.github.io/R-intro/;">
+<meta name="citation_reference" content="citation_title=Geocomputation with r;,citation_author=Robin Lovelace;,citation_author=Jakub Nowosad;,citation_author=Jannes Muenchow;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://r.geocompx.org/;">
+<meta name="citation_reference" content="citation_title=Introduction to urban accessibility: A practical guide with r;,citation_author=Rafael HM Pereira;,citation_author=Daniel Herszenhut;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://ipeagit.github.io/intro_access_book/;">
+<meta name="citation_reference" content="citation_title=Guide: The open data consumer checklist;,citation_author=The Open Data Institute;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=https://theodi.org/insights/guides/the-open-data-consumer-checklist/;">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./open-data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dados Abertos em transportes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Digitalizing Mobility Braga</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/rosamfelix/EITbraga" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Início</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planeamento</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./open-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dados Abertos em transportes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gtfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GTFS</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r5r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Acessibilidade com r5r</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Slides das aulas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sobre</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#pontos-de-acesso-nacionais-nap" id="toc-pontos-de-acesso-nacionais-nap" class="nav-link active" data-scroll-target="#pontos-de-acesso-nacionais-nap"><span class="header-section-number">3.1</span> Pontos de Acesso Nacionais (NAP)</a>
+  <ul class="collapse">
+  <li><a href="#união-europeia" id="toc-união-europeia" class="nav-link" data-scroll-target="#união-europeia"><span class="header-section-number">3.1.1</span> União Europeia</a></li>
+  <li><a href="#portugal" id="toc-portugal" class="nav-link" data-scroll-target="#portugal"><span class="header-section-number">3.1.2</span> Portugal</a></li>
+  </ul></li>
+  <li><a href="#boas-práticas-de-dados-abertos" id="toc-boas-práticas-de-dados-abertos" class="nav-link" data-scroll-target="#boas-práticas-de-dados-abertos"><span class="header-section-number">3.2</span> Boas práticas de dados abertos</a>
+  <ul class="collapse">
+  <li><a href="#tutoriais" id="toc-tutoriais" class="nav-link" data-scroll-target="#tutoriais"><span class="header-section-number">3.2.1</span> Tutoriais</a></li>
+  <li><a href="#reutilização-de-dados-abertos" id="toc-reutilização-de-dados-abertos" class="nav-link" data-scroll-target="#reutilização-de-dados-abertos"><span class="header-section-number">3.2.2</span> Reutilização de dados abertos</a></li>
+  </ul></li>
+  <li><a href="#exemplos-internacionais" id="toc-exemplos-internacionais" class="nav-link" data-scroll-target="#exemplos-internacionais"><span class="header-section-number">3.3</span> Exemplos internacionais</a>
+  <ul class="collapse">
+  <li><a href="#stats19" id="toc-stats19" class="nav-link" data-scroll-target="#stats19"><span class="header-section-number">3.3.1</span> STATS19</a></li>
+  <li><a href="#táxis-em-nova-iorque" id="toc-táxis-em-nova-iorque" class="nav-link" data-scroll-target="#táxis-em-nova-iorque"><span class="header-section-number">3.3.2</span> Táxis em Nova Iorque</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dados Abertos em transportes</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A União Europeia <a href="https://data.europa.eu/pt/dataeuropa-academy/what-open-data">define Dados Abertos</a> como:</p>
+<blockquote class="blockquote">
+<p>Os dados abertos (da administração)&nbsp;são as informações que os <strong>organismos públicos</strong> recolhem, produzem ou compram (também chamadas informações do setor público) e disponibilizam a <strong>título gratuito</strong> tendo em vista a sua reutilização para qualquer fim. A licença estabelece as condições de utilização. Os princípios que regem os dados abertos são descritos pormenorizadamente na <a href="http://opendefinition.org/">Definição de Conhecimento Aberto</a>.</p>
+<p>As <strong>vantagens</strong> dos dados abertos são múltiplas e podem ir dos ganhos de eficiência das administrações públicas ao crescimento económico do setor privado passando pelo bem-estar-social em sentido lato.</p>
+</blockquote>
+<p>Outras vantagens e benefícios da partilha de dados são:</p>
+<ul>
+<li>Transparência e responsabilização, escrutínio democrático;</li>
+<li>Instituições mais eficientes e eficazes, procura e acesso a dados mais facilitadas, interoperabilidade de sistemas;</li>
+<li>Maior credibilidade das decisões</li>
+<li>Políticas públicas mais informadas, esclarecidas e sustentadas;</li>
+<li>Respostas mais rápidas e adequadas a contextos de crise;</li>
+<li>Desenvolvimento económico.</li>
+</ul>
+<p>A União Europeia estima que o valor económico da partilha e utilização de dados abertos chegue a 194 mil milhões € em 2030.</p>
+<p>Neste capítulo, vamos guiá-lo através das fontes de dados abertos para a análise dos transportes: redes rodoviárias e informações sobre os transportes públicos.</p>
+<section id="pontos-de-acesso-nacionais-nap" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="pontos-de-acesso-nacionais-nap"><span class="header-section-number">3.1</span> Pontos de Acesso Nacionais (NAP)</h2>
+<section id="união-europeia" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="união-europeia"><span class="header-section-number">3.1.1</span> União Europeia</h3>
+<p>A diretiva ITS da Comissão Europeia (2010/40/EU) recomenda aos Estados-Membros que forneçam acesso a dados sobre transportes, de acordo com os stardards definidos pela CE. Os dados incluem não só dados sobre <strong>transportes públicos</strong>, mas também <strong>redes rodoviárias</strong>, parques de <strong>estacionamento</strong> e outras informações relacionadas com transportes.</p>
+<p><a href="https://transport.ec.europa.eu/transport-themes/smart-mobility/road/its-directive-and-action-plan/national-access-points_en">List of the European Union members states with National Access Points for Transportation data</a></p>
+<p>Exemplo dos dados de serviços de autocarro na Bélgica:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.transportdata.be/en/dataset?tags=Bus"><img src="images/clipboard-3645209787.png" class="img-fluid figure-img" alt="Fonte: Transport Data Belgium"></a></p>
+<figcaption>Fonte: Transport Data Belgium</figcaption>
+</figure>
+</div>
+</section>
+<section id="portugal" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="portugal"><span class="header-section-number">3.1.2</span> Portugal</h3>
+<section id="nap" class="level4">
+<h4 class="anchored" data-anchor-id="nap">NAP</h4>
+<p>Em Portugal, o NAP encontra-se em <a href="https://nap-portugal.imt-ip.pt/nap/home">https://nap-portugal.imt-ip.pt</a></p>
+<p><a href="https://nap-portugal.imt-ip.pt/nap/home"><img src="images/clipboard-1939004073.png" class="img-fluid"></a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TPC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Encontrar os dados dos parques de estacionamento municipais do Porto.</p></li>
+<li><p>Encontrar e descarregar os dados GTFS da Carris Metropolitana</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="portal-de-dados-abertos" class="level4">
+<h4 class="anchored" data-anchor-id="portal-de-dados-abertos">Portal de dados abertos</h4>
+<p>O portal <a href="https://dados.gov.pt/pt/"><strong>dados.gov.pt</strong></a> é a plataforma oficial nacional de partilha de dados institucionais.</p>
+<p>Alguns websites de dados abertos de municípios também incluem dados de mobilidade e transportes, como é o caso de:</p>
+<ul>
+<li><a href="https://dadosabertos.cm-lisboa.pt/">Dados Abertos da Câmara Municipal de Lisboa</a></li>
+<li><a href="https://data.cascais.pt/geral/data-hub/dados-abertos">Dados Abertos da Câmara Municipal de Cascais</a></li>
+<li><a href="https://oeirasinterativa.oeiras.pt/dadosabertos/dataset/">Dados Abertos da Câmara Municipal de Oeiras</a></li>
+<li><a href="https://opendata.porto.digital/">Dados Abertos da Câmara Municipal do Porto</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://data.cascais.pt/geral/data-hub/dados-abertos"><img src="images/clipboard-3490448273.png" class="img-fluid figure-img" alt="Fonte: data.cascais.pt"></a></p>
+<figcaption>Fonte: data.cascais.pt</figcaption>
+</figure>
+</div>
+<p>Cada vez mais, os dados de transporte disponibilizados estão <strong>georreferenciados</strong> - i.e., é possível serem visualizados num mapa.</p>
+<p>Algumas instituições permitem o <strong>download</strong> dos dados, e outros apenas a <strong>visualização</strong> dos mesmos em mapas ou dashboards <strong>interativas</strong>.</p>
+<p>As boas práticas recomendam que os dados venham acompanhados de metadados, que incluem toda a informação relevante sobre os dados (ex: explicação dos acrónimos de variáveis usadas).</p>
+<p>Outras informações que acompanham os dados abertos são:</p>
+<ul>
+<li>Descrição</li>
+<li>Formato</li>
+<li>Período temporal</li>
+<li>Versão</li>
+<li>Data da última atualização</li>
+<li>Responsável pela manutenção dos dados e contacto</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-279399363.png" class="img-fluid figure-img" width="470"></p>
+<figcaption>Exemplo de informação complementar de dados de Praças de Táxis (Cascais)</figcaption>
+</figure>
+</div>
+<p><strong>Dados de operação</strong> (passageiros, bilhética, volumes de tráfego, entre outros) normalmente não são disponibilizados ao público.</p>
+<p>Por vezes, alguma dessa informação é incluída, de forma agregada, nos relatórios anuais de sustentabilidade das operadoras.</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questão
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Enumere motivos para este tipo de dados não ser, normalmente, de acesso aberto.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="boas-práticas-de-dados-abertos" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="boas-práticas-de-dados-abertos"><span class="header-section-number">3.2</span> Boas práticas de dados abertos</h2>
+<p>O <a href="https://theodi.org/insights/guides/">Open Data Institute</a> publica vários <strong>guias de boas práticas</strong> de partilha e uso de dados abertos, tais como validação de veracidade dos dados, anonimização de dados, avaliação dos riscos de partilha de dados, ética e responsabilidade, estimativa do valor dos dados partilhados, entre outros.</p>
+<p>Os dados abertos são publicados sob <a href="https://opendatacommons.org/licenses/">licenças específicas</a>, não incluem <strong>dados pessoais</strong>, informação sensível e/ou confidencial.</p>
+<p>Por omissão, o <a href="https://dados.gov.pt/pt">dados.gov</a> usa a licença <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0 (Creative Commons Attribution 4.0)</a>, que pressupõe a <strong>menção da fonte original</strong> dos dados, mas <strong>possibilita qualquer tipo de uso</strong>.</p>
+<p>Algumas questões devem ser consideradas ao <strong>usar</strong> um conjunto de dados abertos <span class="citation" data-cites="checklist">(<a href="references.html#ref-checklist" role="doc-biblioref">The Open Data Institute 2013</a>)</span>:</p>
+<p><strong>Formato</strong></p>
+<ul>
+<li>Como foram processados os dados?</li>
+<li>Estão em estado bruto (<em>raw</em>) ou foram processados?</li>
+<li>De que modo o seu formato (e granularidade) irá afetar a sua análise/produto/aplicação?</li>
+<li>Que transformações sintáticas (linguagem) e semânticas (significado) serão necessárias?</li>
+<li>Estes dados são compatíveis com outros conjuntos de dados de que dispõe?</li>
+</ul>
+<p><strong>Qualidade</strong></p>
+<ul>
+<li>Até que ponto os dados são atuais?</li>
+<li>Com que frequência são atualizados?</li>
+<li>Compreende todos os campos e o seu contexto?</li>
+<li>Durante quanto tempo serão publicados? Qual é o compromisso com o publicador?</li>
+<li>O que sabe sobre a exatidão dos dados?</li>
+<li>Como são tratados os dados omissos?</li>
+</ul>
+<p>Alguns dados abertos fornecem um <a href="https://dados.gov.pt/pt/docapi/"><strong>API</strong></a> (Application Programming Interface) para que se possa automativamente chamar os dados mais autualizados disponíveis.</p>
+<section id="tutoriais" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="tutoriais"><span class="header-section-number">3.2.1</span> Tutoriais</h3>
+<p>O ISCTE, no âmbito do <a href="https://ogp.eportugal.gov.pt/">Plano Nacional de Administração Aberta</a>, criou um <a href="https://online-learning.iscte-iul.pt/bo/courses/plano-nacional-de-acao-de-administracao-aberta-pt">conjunto de vídeos tutoriais</a> sobre algumas possibilidades da reutilização de dados, utilizando o R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://online-learning.iscte-iul.pt/bo/courses/plano-nacional-de-acao-de-administracao-aberta-pt"><img src="images/clipboard-935508586.png" class="img-fluid figure-img" alt="Curso gratuito sobre a utilização de plataformas de dados abertos (Português), do ISCTE"></a></p>
+<figcaption>Curso gratuito sobre a utilização de plataformas de dados abertos (Português), do ISCTE</figcaption>
+</figure>
+</div>
+<p>A AMA - Agência para a Modernização Administrativa disponibiliza também alguns vídeos sobre como usar o portal de dados abertos. Chamo a atenção para o “<strong>Como publicar dados abertos</strong>”, acessível a qualquer entidade.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/G7-qftX_org" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="reutilização-de-dados-abertos" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="reutilização-de-dados-abertos"><span class="header-section-number">3.2.2</span> Reutilização de dados abertos</h3>
+<p>Qualquer pessoa ou entidade pode aceder a dados abertos (por definição). É recomendado, como boa prática, a <strong>partilha dos resultados</strong> que se obtiveram com a utilização de um conjunto de dados abertos. Tal permite inspirar outros utilizadores dos dados, bem como dar conhecimento à entidade que os partilhou trabalhos que podem ser realizados com esses dados - levando muitas vezes à descoberta de novas prespetivas sobre os dados.</p>
+<p>As reutilizações documentadas muitas vezes também partilham o <strong>código utilizado</strong> para tratamento e análise do conjunto de dados, permitindo a sua <strong>replicabilidade</strong> e adaptação / aplicação a <strong>outros contextos</strong>.</p>
+<p>Exemplos de trabalhos realizados por reutilização de dados abertos:</p>
+<section id="dados.gov.pt" class="level4">
+<h4 class="anchored" data-anchor-id="dados.gov.pt"><a href="https://dados.gov.pt/pt/reuses/">Dados.gov.pt</a></h4>
+<p><a href="https://dados.gov.pt/pt/reuses/"><img src="images/clipboard-295963906.png" class="img-fluid"></a></p>
+</section>
+<section id="lxdatalab" class="level4">
+<h4 class="anchored" data-anchor-id="lxdatalab"><a href="https://lisboaaberta.cm-lisboa.pt/index.php/pt/lx-data-lab/resultados">LxDataLab</a></h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://lisboaaberta.cm-lisboa.pt/index.php/pt/lx-data-lab/resultados"><img src="images/clipboard-4030091193.png" class="img-fluid figure-img" alt="Resultados de um desafio LxDataLab"></a></p>
+<figcaption>Resultados de um desafio LxDataLab</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="exemplos-internacionais" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="exemplos-internacionais"><span class="header-section-number">3.3</span> Exemplos internacionais</h2>
+<section id="stats19" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="stats19"><span class="header-section-number">3.3.1</span> STATS19</h3>
+<p>O Departamento de Transportes do Reino Unido (DfT) mantém uma importante base de dados com acidentes e colisões rodoviárias para todo o território - o <a href="https://www.data.gov.uk/dataset/25170a92-0736-4090-baea-bf6add82d118/gm-road-casualty-accidents-full-stats19-data">STATS19</a>, contendo dados uniformizados desde 1926 (centenas de milhares), que têm vindo a ser registados pela Polícia.</p>
+<p>Esta base de dados abertos é amplamente usada para definição de políticas públicas de segurança rodviária, e na academia, com a elaboração de vários dashbors e estudos que utilizam os dados. Exemplo:</p>
+<ul>
+<li><p><a href="https://maps.dft.gov.uk/road-casualties/index.html">Interactive dashboard</a></p></li>
+<li><p><a href="https://www.collisionmap.uk/">Collision map</a></p></li>
+<li><p><a href="https://vzsw.traffweb.app/traffweb/1/PublicMap">Vision Zero public map</a></p></li>
+<li><p><a href="https://bikedata.cyclestreets.net/">Bikedata</a> - Compilação de vários dados de mobilidade urbana, incluindo colisões por tipo, contagens de tráfego. Os dados podem ser filtrados e exportados.</p></li>
+<li><p><a href="https://itsleeds.github.io/stats19/">stats19</a> - Pacote R com todos os dados pré-tratados.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.collisionmap.uk/gb_las/E08000035/Leeds"><img src="images/clipboard-2645254310.png" class="img-fluid figure-img" alt="Collision Map em Leeds (UK)"></a></p>
+<figcaption>Collision Map em Leeds (UK)</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://bikedata.cyclestreets.net/"><img src="images/clipboard-2443435340.png" class="img-fluid figure-img" alt="Bikedata: compilação de vários dados relativos à circulação em bicicicleta"></a></p>
+<figcaption>Bikedata: compilação de vários dados relativos à circulação em bicicicleta</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://maps.dft.gov.uk/road-casualties/index.html"><img src="images/clipboard-3456343079.png" class="img-fluid figure-img" alt="Painel interativo do DfT para os dados de acidentes rodoviários"></a></p>
+<figcaption>Painel interativo do DfT para os dados de acidentes rodoviários</figcaption>
+</figure>
+</div>
+</section>
+<section id="táxis-em-nova-iorque" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="táxis-em-nova-iorque"><span class="header-section-number">3.3.2</span> Táxis em Nova Iorque</h3>
+<p>A comissão de Táxis de Nova York (Taxi &amp; Limousine Commission) partilha todos os <a href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page">dados de viagens</a> realizadas desde 2009.</p>
+<p>Os dados incluem localização de origem e destino, data e hora, distância de viagem, tarifa, tipo de pagamento, e número de passegeiros transportados.</p>
+<p>Todos os anos, são realizadas várias análises a este conjunto de dados por alunos, investigadores, programadores, etc, que permitem uma análise detalhada e visualização espacial de padrões de mobilidade de táxis.</p>
+<p><a href="https://www.stat.cmu.edu/capstoneresearch/spring2022/315files_s22/team23.html">Exemplo 1</a> | <a href="https://github.com/richhuwtaylor/ny-taxi-analytics-pipeline/tree/main">Exemplo 2</a> | <a href="https://kepler.gl/demo/nyctrips">Exemplo 3</a> | <a href="https://public.tableau.com/app/profile/sekyung.na6348/viz/NYCTaxi20183/Summary">Examplo 4</a> | <a href="https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/">Exemplo 5</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/richhuwtaylor/ny-taxi-analytics-pipeline"><img src="images/clipboard-1334823515.png" class="img-fluid figure-img" alt="Dashboard interativo de análise de dados de táxis em NY. Fonte: Github."></a></p>
+<figcaption>Dashboard interativo de análise de dados de táxis em NY. Fonte: Github.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/sekyungna/NYC_Taxi/"><img src="images/clipboard-3077193967.png" class="img-fluid figure-img" alt="Dashboard interativo com viagens de táxi em 2018"></a></p>
+<figcaption>Dashboard interativo com viagens de táxi em 2018</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://kepler.gl/demo/nyctrips"><img src="images/clipboard-3532115784.png" class="img-fluid figure-img" alt="Mapa interativo de localização de origens e destinos de viagens"></a></p>
+<figcaption>Mapa interativo de localização de origens e destinos de viagens</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Questões
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Que vantagens vê na utilização de dados abertos?</p></li>
+<li><p>Que dados a sua instituição poderia partilhar em acesso aberto?</p></li>
+<li><p>Que vantagens vê na abertura de dados para a sua instituição?</p></li>
+</ul>
+</div>
+</div>
+<p>No capítulo seguinte iremos explorar o que são dados GTFS e como podem ser usados.</p>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-checklist" class="csl-entry" role="listitem">
+The Open Data Institute. 2013. <em>Guide: The Open Data Consumer Checklist</em>. <a href="https://theodi.org/insights/guides/the-open-data-consumer-checklist/">https://theodi.org/insights/guides/the-open-data-consumer-checklist/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./gtfs.html" class="pagination-link" aria-label="GTFS">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">GTFS</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    prefer-html: true</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Dados Abertos em transportes</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>A União Europeia <span class="co">[</span><span class="ot">define Dados Abertos</span><span class="co">](https://data.europa.eu/pt/dataeuropa-academy/what-open-data)</span> como:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Os dados abertos (da administração)&nbsp;são as informações que os **organismos públicos** recolhem, produzem ou compram (também chamadas informações do setor público) e disponibilizam a **título gratuito** tendo em vista a sua reutilização para qualquer fim.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A licença estabelece as condições de utilização.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Os princípios que regem os dados abertos são descritos pormenorizadamente na </span><span class="co">[</span><span class="ot">Definição de Conhecimento Aberto</span><span class="co">](http://opendefinition.org/)</span><span class="at">.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; As **vantagens** dos dados abertos são múltiplas e podem ir dos ganhos de eficiência das administrações públicas ao crescimento económico do setor privado passando pelo bem-estar-social em sentido lato.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Outras vantagens e benefícios da partilha de dados são:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Transparência e responsabilização, escrutínio democrático;</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Instituições mais eficientes e eficazes, procura e acesso a dados mais facilitadas, interoperabilidade de sistemas;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Maior credibilidade das decisões</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Políticas públicas mais informadas, esclarecidas e sustentadas;</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Respostas mais rápidas e adequadas a contextos de crise;</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Desenvolvimento económico.</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>A União Europeia estima que o valor económico da partilha e utilização de dados abertos chegue a 194 mil milhões € em 2030.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Neste capítulo, vamos guiá-lo através das fontes de dados abertos para a análise dos transportes: redes rodoviárias e informações sobre os transportes públicos.</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pontos de Acesso Nacionais (NAP)</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### União Europeia</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>A diretiva ITS da Comissão Europeia (2010/40/EU) recomenda aos Estados-Membros que forneçam acesso a dados sobre transportes, de acordo com os stardards definidos pela CE.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Os dados incluem não só dados sobre **transportes públicos**, mas também **redes rodoviárias**, parques de **estacionamento** e outras informações relacionadas com transportes.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">List of the European Union members states with National Access Points for Transportation data</span><span class="co">](https://transport.ec.europa.eu/transport-themes/smart-mobility/road/its-directive-and-action-plan/national-access-points_en)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Exemplo dos dados de serviços de autocarro na Bélgica:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Fonte: Transport Data Belgium](images/clipboard-3645209787.png)</span><span class="co">](https://www.transportdata.be/en/dataset?tags=Bus)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Portugal</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">#### NAP</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>Em Portugal, o NAP encontra-se em <span class="co">[</span><span class="ot">https://nap-portugal.imt-ip.pt</span><span class="co">](https://nap-portugal.imt-ip.pt/nap/home)</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![](images/clipboard-1939004073.png)</span><span class="co">](https://nap-portugal.imt-ip.pt/nap/home)</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">#### TPC</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Encontrar os dados dos parques de estacionamento municipais do Porto.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Encontrar e descarregar os dados GTFS da Carris Metropolitana</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Portal de dados abertos</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>O portal <span class="co">[</span><span class="ot">**dados.gov.pt**</span><span class="co">](https://dados.gov.pt/pt/)</span> é a plataforma oficial nacional de partilha de dados institucionais.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>Alguns websites de dados abertos de municípios também incluem dados de mobilidade e transportes, como é o caso de:</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dados Abertos da Câmara Municipal de Lisboa</span><span class="co">](https://dadosabertos.cm-lisboa.pt/)</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dados Abertos da Câmara Municipal de Cascais</span><span class="co">](https://data.cascais.pt/geral/data-hub/dados-abertos)</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dados Abertos da Câmara Municipal de Oeiras</span><span class="co">](https://oeirasinterativa.oeiras.pt/dadosabertos/dataset/)</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dados Abertos da Câmara Municipal do Porto</span><span class="co">](https://opendata.porto.digital/)</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Fonte: data.cascais.pt](images/clipboard-3490448273.png)</span><span class="co">](https://data.cascais.pt/geral/data-hub/dados-abertos)</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Cada vez mais, os dados de transporte disponibilizados estão **georreferenciados** - i.e., é possível serem visualizados num mapa.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>Algumas instituições permitem o **download** dos dados, e outros apenas a **visualização** dos mesmos em mapas ou dashboards **interativas**.</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>As boas práticas recomendam que os dados venham acompanhados de metadados, que incluem toda a informação relevante sobre os dados (ex: explicação dos acrónimos de variáveis usadas).</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>Outras informações que acompanham os dados abertos são:</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Descrição</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Formato</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Período temporal</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Versão</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Data da última atualização</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Responsável pela manutenção dos dados e contacto</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="al">![Exemplo de informação complementar de dados de Praças de Táxis (Cascais)](images/clipboard-279399363.png)</span>{width="470"}</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>**Dados de operação** (passageiros, bilhética, volumes de tráfego, entre outros) normalmente não são disponibilizados ao público.</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>Por vezes, alguma dessa informação é incluída, de forma agregada, nos relatórios anuais de sustentabilidade das operadoras.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution appearance="simple"}</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Questão</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>Enumere motivos para este tipo de dados não ser, normalmente, de acesso aberto.</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Boas práticas de dados abertos</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>O <span class="co">[</span><span class="ot">Open Data Institute</span><span class="co">](https://theodi.org/insights/guides/)</span> publica vários **guias de boas práticas** de partilha e uso de dados abertos, tais como validação de veracidade dos dados, anonimização de dados, avaliação dos riscos de partilha de dados, ética e responsabilidade, estimativa do valor dos dados partilhados, entre outros.</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>Os dados abertos são publicados sob <span class="co">[</span><span class="ot">licenças específicas</span><span class="co">](https://opendatacommons.org/licenses/)</span>, não incluem **dados pessoais**, informação sensível e/ou confidencial.</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>Por omissão, o <span class="co">[</span><span class="ot">dados.gov</span><span class="co">](https://dados.gov.pt/pt)</span> usa a licença <span class="co">[</span><span class="ot">CC BY 4.0 (Creative Commons Attribution 4.0)</span><span class="co">](https://creativecommons.org/licenses/by/4.0/legalcode)</span>, que pressupõe a **menção da fonte original** dos dados, mas **possibilita qualquer tipo de uso**.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>Algumas questões devem ser consideradas ao **usar** um conjunto de dados abertos <span class="co">[</span><span class="ot">@checklist</span><span class="co">]</span>:</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>**Formato**</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Como foram processados os dados?</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Estão em estado bruto (*raw*) ou foram processados?</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>De que modo o seu formato (e granularidade) irá afetar a sua análise/produto/aplicação?</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Que transformações sintáticas (linguagem) e semânticas (significado) serão necessárias?</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Estes dados são compatíveis com outros conjuntos de dados de que dispõe?</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>**Qualidade**</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Até que ponto os dados são atuais?</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Com que frequência são atualizados?</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compreende todos os campos e o seu contexto?</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Durante quanto tempo serão publicados? Qual é o compromisso com o publicador?</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>O que sabe sobre a exatidão dos dados?</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Como são tratados os dados omissos?</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>Alguns dados abertos fornecem um <span class="co">[</span><span class="ot">**API**</span><span class="co">](https://dados.gov.pt/pt/docapi/)</span> (Application Programming Interface) para que se possa automativamente chamar os dados mais autualizados disponíveis.</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tutoriais</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>O ISCTE, no âmbito do <span class="co">[</span><span class="ot">Plano Nacional de Administração Aberta</span><span class="co">](https://ogp.eportugal.gov.pt/)</span>, criou um <span class="co">[</span><span class="ot">conjunto de vídeos tutoriais</span><span class="co">](https://online-learning.iscte-iul.pt/bo/courses/plano-nacional-de-acao-de-administracao-aberta-pt)</span> sobre algumas possibilidades da reutilização de dados, utilizando o R.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Curso gratuito sobre a utilização de plataformas de dados abertos (Português), do ISCTE](images/clipboard-935508586.png)</span><span class="co">](https://online-learning.iscte-iul.pt/bo/courses/plano-nacional-de-acao-de-administracao-aberta-pt)</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>A AMA - Agência para a Modernização Administrativa disponibiliza também alguns vídeos sobre como usar o portal de dados abertos.</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>Chamo a atenção para o "**Como publicar dados abertos**", acessível a qualquer entidade.</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/G7-qftX_org &gt;}}</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Reutilização de dados abertos</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>Qualquer pessoa ou entidade pode aceder a dados abertos (por definição).</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>É recomendado, como boa prática, a **partilha dos resultados** que se obtiveram com a utilização de um conjunto de dados abertos.</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>Tal permite inspirar outros utilizadores dos dados, bem como dar conhecimento à entidade que os partilhou trabalhos que podem ser realizados com esses dados - levando muitas vezes à descoberta de novas prespetivas sobre os dados.</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>As reutilizações documentadas muitas vezes também partilham o **código utilizado** para tratamento e análise do conjunto de dados, permitindo a sua **replicabilidade** e adaptação / aplicação a **outros contextos**.</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>Exemplos de trabalhos realizados por reutilização de dados abertos:</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### [Dados.gov.pt](https://dados.gov.pt/pt/reuses/)</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![](images/clipboard-295963906.png)</span><span class="co">](https://dados.gov.pt/pt/reuses/)</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="fu">#### [LxDataLab](https://lisboaaberta.cm-lisboa.pt/index.php/pt/lx-data-lab/resultados)</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Resultados de um desafio LxDataLab](images/clipboard-4030091193.png)</span><span class="co">](https://lisboaaberta.cm-lisboa.pt/index.php/pt/lx-data-lab/resultados)</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exemplos internacionais</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="fu">### STATS19</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>O Departamento de Transportes do Reino Unido (DfT) mantém uma importante base de dados com acidentes e colisões rodoviárias para todo o território - o <span class="co">[</span><span class="ot">STATS19</span><span class="co">](https://www.data.gov.uk/dataset/25170a92-0736-4090-baea-bf6add82d118/gm-road-casualty-accidents-full-stats19-data)</span>, contendo dados uniformizados desde 1926 (centenas de milhares), que têm vindo a ser registados pela Polícia.</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>Esta base de dados abertos é amplamente usada para definição de políticas públicas de segurança rodviária, e na academia, com a elaboração de vários dashbors e estudos que utilizam os dados.</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>Exemplo:</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Interactive dashboard</span><span class="co">](https://maps.dft.gov.uk/road-casualties/index.html)</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Collision map</span><span class="co">](https://www.collisionmap.uk/)</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Vision Zero public map</span><span class="co">](https://vzsw.traffweb.app/traffweb/1/PublicMap)</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Bikedata</span><span class="co">](https://bikedata.cyclestreets.net/)</span> - Compilação de vários dados de mobilidade urbana, incluindo colisões por tipo, contagens de tráfego.</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>    Os dados podem ser filtrados e exportados.</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">stats19</span><span class="co">](https://itsleeds.github.io/stats19/)</span> - Pacote R com todos os dados pré-tratados.</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Collision Map em Leeds (UK)](images/clipboard-2645254310.png)</span><span class="co">](https://www.collisionmap.uk/gb_las/E08000035/Leeds)</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Bikedata: compilação de vários dados relativos à circulação em bicicicleta](images/clipboard-2443435340.png)</span><span class="co">](https://bikedata.cyclestreets.net/)</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Painel interativo do DfT para os dados de acidentes rodoviários](images/clipboard-3456343079.png)</span><span class="co">](https://maps.dft.gov.uk/road-casualties/index.html)</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### Táxis em Nova Iorque</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>A comissão de Táxis de Nova York (Taxi &amp; Limousine Commission) partilha todos os <span class="co">[</span><span class="ot">dados de viagens</span><span class="co">](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)</span> realizadas desde 2009.</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>Os dados incluem localização de origem e destino, data e hora, distância de viagem, tarifa, tipo de pagamento, e número de passegeiros transportados.</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>Todos os anos, são realizadas várias análises a este conjunto de dados por alunos, investigadores, programadores, etc, que permitem uma análise detalhada e visualização espacial de padrões de mobilidade de táxis.</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Exemplo 1</span><span class="co">](https://www.stat.cmu.edu/capstoneresearch/spring2022/315files_s22/team23.html)</span> \| <span class="co">[</span><span class="ot">Exemplo 2</span><span class="co">](https://github.com/richhuwtaylor/ny-taxi-analytics-pipeline/tree/main)</span> \| <span class="co">[</span><span class="ot">Exemplo 3</span><span class="co">](https://kepler.gl/demo/nyctrips)</span> \| <span class="co">[</span><span class="ot">Examplo 4</span><span class="co">](https://public.tableau.com/app/profile/sekyung.na6348/viz/NYCTaxi20183/Summary)</span> \| <span class="co">[</span><span class="ot">Exemplo 5</span><span class="co">](https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/)</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Dashboard interativo de análise de dados de táxis em NY. Fonte: Github.](images/clipboard-1334823515.png)</span><span class="co">](https://github.com/richhuwtaylor/ny-taxi-analytics-pipeline)</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Dashboard interativo com viagens de táxi em 2018](images/clipboard-3077193967.png)</span><span class="co">](https://github.com/sekyungna/NYC_Taxi/)</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Mapa interativo de localização de origens e destinos de viagens](images/clipboard-3532115784.png)</span><span class="co">](https://kepler.gl/demo/nyctrips)</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Questões</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Que vantagens vê na utilização de dados abertos?</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Que dados a sua instituição poderia partilhar em acesso aberto?</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Que vantagens vê na abertura de dados para a sua instituição?</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>No capítulo seguinte iremos explorar o que são dados GTFS e como podem ser usados.</span></code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>R Félix</p>
+</div>   
+    <div class="nav-footer-center">
+<p>TU Berlin goes to Braga</p>
+</div>
+    <div class="nav-footer-right">
+<p>May 2025</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
