@@ -178,9 +178,9 @@ ggplot(duracao_viagem_BC_HP) +
   theme_bw()
 ```
 
-### Carris Lisboa
+### Transportes Urbanos de Braga (TUB)
 
-Podemos fazer o mesmo exercício com os [dados da Carris](https://gateway.carris.pt/gateway/gtfs/api/v2.8/GTFS). O ficheiro original não inclui o transfers.txt, e foi gerado automaticamente um com a função [`gtfsrouter::gtfs_transfer_table()`](https://urbananalyst.github.io/gtfsrouter/reference/gtfs_transfer_table.html)
+Podemos fazer o mesmo exercício com os [dados da TUB](https://tub.pt/developer/gtfs/feed/tub.zip). O ficheiro original não inclui o transfers.txt, e foi gerado automaticamente um com a função [`gtfsrouter::gtfs_transfer_table()`](https://urbananalyst.github.io/gtfsrouter/reference/gtfs_transfer_table.html)
 
 ```{r}
 #| message: false 

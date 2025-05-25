@@ -9,6 +9,8 @@ library(mapview)
 # Limite município Lisboa
 MunicipiosGEO = sf::st_read("data/Municipalities_geo.gpkg")
 LisboaGEO = MunicipiosGEO |> filter(Municipality == "Lisboa")
+ConcelhosPT = sf::st_read("data/MunicipalitiesPT_geo.gpkg")
+BragaGEO = ConcelhosPT |> filter(con_name == "Braga")
 
 # Metro Lisboa ------------------------------------------------------------
 
@@ -155,6 +157,111 @@ ggplot(duracao_viagem_CS_Dom) +
           fill = "transparent",
           color = "grey30") +
   theme_bw()
+
+
+
+# TUB Braga -----------------------------------------------------------
+
+TUB = read_gtfs("https://github.com/rosamfelix/EITbraga/releases/download/latest/tub_gtfs.zip")
+validate_gtfs(TUB) # validar
+# foi criado um ficheiro transfers.txt que não existia no original, com o gtfsrouter
+
+# Paragens
+View(TUB$stops)
+ESTACOES_tub = stops_as_sf(TUB$stops) # converter texto para geometria
+mapview(ESTACOES_tub) # visualizar as 1980 paragens
+
+MONSENHORAIROSA = ESTACOES_tub |> 
+  filter(stop_name == "MONSENHOR AIROSA") # a paragem do IPCA
+
+# Percursos
+ROTAS_tub = tidytransit::shapes_as_sf(TUB$shapes) # converter texto para geometria
+plot(ROTAS_tub) # ver as 395 rotas
+mapview(ROTAS_tub, zcol = "shape_id") # visualizar
+
+
+# 1. num dia útil em hora de ponta, a partir do Cais do Sodré
+
+# filtramos os dados para o dia de hoje entre as 7h30 e as 9h00
+stop_times_tub1 = filter_stop_times(TUB, "2025-05-27", "07:30:00", "09:00:00")
+duracao_viagem1 = travel_times(stop_times_tub1, "MONSENHOR AIROSA", stop_dist_check = FALSE)
+
+# estatísticas
+summary(duracao_viagem1$travel_time/60) # resumo em minutos
+hist(duracao_viagem1$travel_time/60, breaks = 20) # histograma
+abline(v = mean(duracao_viagem1$travel_time/60), col = "red") # linha de média
+abline(v = median(duracao_viagem1$travel_time/60), col = "blue") # linha de mediana
+round(prop.table(table(duracao_viagem1$transfers))*100, 1) # percentagem de transferências
+
+duracao_viagem_TUB_HP = ESTACOES_tub |> 
+  left_join(duracao_viagem1, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
+  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
+  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
+  filter(travel_time < 60*60) |> # remover viagens com mais de 60 minutos
+  filter(!stop_id %in% c(19001,14601,14602)) # remover as pagarens em Almada
+
+# mapa com as estações que se conseguem alcançar em contínuo
+ggplot(duracao_viagem_TUB_HP) +
+  geom_sf(aes(color = travel_time/60))+
+  ggtitle("Alcance desde o IPCA (TUB)",
+          subtitle = "às 7h30 de Terça, 27 Maio 2025 - máx 1 transf") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = MONSENHORAIROSA, fill = "black", size = 5) + # destacar a paragem do IPCA
+  geom_sf(data = BragaGEO,
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+
+# 2. num domingo de tarde
+# filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30
+stop_times_tub2 = filter_stop_times(TUB, "2025-06-01", "20:00:00", "22:00:00")
+duracao_viagem2 = travel_times(stop_times_tub2, "MONSENHOR AIROSA", stop_dist_check = FALSE)
+
+summary(duracao_viagem2$travel_time/60) # resumo em minutos
+
+duracao_viagem_TUB_Dom = ESTACOES_tub |> 
+  left_join(duracao_viagem2, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
+  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
+  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
+  filter(travel_time < 60*60) |>  # remover viagens com mais de 60 minutos
+  mutate(intervalo = case_when(
+    travel_time < 15*60 ~ "até 15 min",
+    travel_time < 30*60 ~ "até 30 min",
+    travel_time < 45*60 ~ "até 45 min",
+    TRUE ~ "até 60 min"
+  )) # criar uma variável com o intervalo de tempo
+
+# mapa com escala contínua de tempo
+ggplot(duracao_viagem_TUB_Dom) +
+  geom_sf(aes(color = travel_time/60))+
+  ggtitle("Alcance desde o IPCA (TUB)",
+          subtitle = "às 20h30 de Domingo, 1 Junho 2025 - máx 1 transf") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = MONSENHORAIROSA, fill = "black", size = 5) + # destacar a paragem do IPCA
+  geom_sf(data = BragaGEO,
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+
+# mapa com as estações que se conseguem alcançar em 15, 30 e 45 minutos
+ggplot(duracao_viagem_TUB_Dom) +
+  geom_sf(aes(color = intervalo))+ # mudar para escala discreta
+  scale_color_manual(values = c("até 15 min" = "#119da4",
+                                "até 30 min" = "#0c7489", 
+                                "até 45 min" = "#13505B",
+                                "até 60 min" = "#040404")) +
+  ggtitle("Alcance desde o IPCA (TUB)",
+          subtitle = "às 20h30 de Domingo, 1 Junho 2025 - máx 1 transf") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = MONSENHORAIROSA, fill = "black", size = 5) + # destacar a paragem do IPCA
+  geom_sf(data = BragaGEO,
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+
+
+
+
 
 
 
