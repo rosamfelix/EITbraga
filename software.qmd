@@ -6,7 +6,7 @@ engine: knitr
 
 # Software {.unnumbered}
 
-Neste capítulo vamos guiá-lo através da instalação do R, do RStudio e dos pacotes necessários para estas aulas.
+Neste capítulo vamos guiá-lo através da instalação do R, do RStudio e dos pacotes necessários para obter os resultados apresentados nestes materiais.
 
 O **R** e o **RStudio** são softwares que necessitam de download e instalação separados.
 
