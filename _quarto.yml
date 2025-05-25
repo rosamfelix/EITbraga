@@ -17,13 +17,13 @@ book:
   chapters:
     - index.qmd
     - summary.qmd
-    - software.qmd
     - open-data.qmd
     - gtfs.qmd
     - r5r.qmd
-    - slides.qmd
-    - about.qmd
     - references.qmd
+    - slides.qmd
+    - software.qmd
+    - about.qmd
   page-footer:
     left: "R Félix"
     center: "TU Berlin goes to Braga"

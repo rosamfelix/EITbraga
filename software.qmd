@@ -4,7 +4,7 @@ code-fold: false
 engine: knitr
 ---
 
-# Software
+# Software {.unnumbered}
 
 Neste capítulo vamos guiá-lo através da instalação do R, do RStudio e dos pacotes necessários para estas aulas.
 
