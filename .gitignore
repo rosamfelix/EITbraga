@@ -47,3 +47,14 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# User data
+slides/
+original/
+
+# quarto
+/.quarto/
+_book/
+
+analiseML/
+!analiseML/analiseML.Rmd

@@ -1,0 +1,52 @@
+project:
+  type: book
+
+lang: pt
+book:
+  title: "Digitalizing Mobility Braga"
+  subtitle: "GTFS and other open data for mobility planning"
+  author:
+   - name: "Rosa Félix"
+     email: rosamfelix@tecnico.pt
+     url: http://www.rosafelix.bike
+     orcid: 0000-0002-5642-6006
+     affiliation: "Instituto Superior Técnico - Universidade de Lisboa"
+  # date: today
+  repo-url: https://github.com/rosamfelix/EITbraga
+  chapters:
+    - index.qmd
+    - summary.qmd
+    - software.qmd
+    - data-manipulation.qmd
+    - interactive-maps.qmd
+    - open-data.qmd
+    - gtfs.qmd
+    - road-networks.qmd
+    - r5r.qmd
+    - assignment.qmd
+    - slides.qmd
+    - about.qmd
+    - references.qmd
+  page-footer:
+    left: "R Félix"
+    center: "TU Berlin goes to Braga"
+    right: "May 2025"
+    
+    
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: superhero
+    code-fold: show
+    code-tools: true
+    number-depth: 3
+    toc-expand: 3
+  # pdf:
+  #   documentclass: scrreprt
+
+editor: visual
+
+google-scholar: true

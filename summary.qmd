@@ -1,0 +1,29 @@
+# Planeamento
+
+## Literacia sobre dados abertos em transportes
+
+1.  Introdução ao R
+2.  Importação e limpeza de dados de transportes em R
+3.  Mapas interativos em R
+4.  Os dados abertos em mobilidade e transportes
+5.  Exemplos nacionais e internacionais de análises com dados abertos
+6.  Introdução ao GTFS
+7.  Fontes de dados GTFS e tratamento
+8.  Redes Viárias com OpenStreetMap
+9.  Acessibilidade espacial em R
+10. Exercício prático utilizando dados de operadora de transportes
+
+## Horário
+
+As aulas decorrerão nos seguintes horários:
+
+-   Quinta-feira, 14 Novembro, 14h00-18h00
+
+-   Quarta-feira, 20 Novembro, 14h00-18h00
+
+-   Quinta-feira, 21 Novembro, 14h00-18h00
+
+## Zoom
+
+As aulas serão em modo remoto, via zoom, através do seguinte endereço:\
+<https://videoconf-colibri.zoom.us/my/rosamfelix>
