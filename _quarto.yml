@@ -13,6 +13,7 @@ book:
      affiliation: "Instituto Superior Técnico - Universidade de Lisboa"
   # date: today
   repo-url: https://github.com/rosamfelix/EITbraga
+  favicon: /images/favicon.png
   chapters:
     - index.qmd
     - summary.qmd
