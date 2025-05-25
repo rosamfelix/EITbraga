@@ -1,10 +1,10 @@
 # Início {.unnumbered}
 
-Materiais e dados para as aulas de **Literacia sobre dados abertos em transportes**, módulo da [Pós-Graduação Mobilidade 360º Gestão de Transportes](https://execed.iscte-iul.pt/applied-online-pos-graduacao-em-mobilidade-360-gestao-de-transportes) do Iscte Executive Education.
+Materiais e dados para a aula de **GTFS e outros dados abertos para planeamento de transportes**, módulo do workshop [Digitalizing Mobility - T.U. Berlin goes to Braga](https://www.academy-tu.berlin/en/shop/digitalizing-mobility/) do EIT Urban Mobility.
 
 <p> </p>
 
-![](images/clipboard-209231891.png){fig-align="center" width="360"}
+![](images/EIT_logo-EU1-horizontal_1.png){fig-align="center"}
 
 <p> </p>
 

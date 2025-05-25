@@ -14,8 +14,7 @@ O **R** e o **RStudio** são softwares que necessitam de download e instalação
 
 O **R** ou **R stats** (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.
 
-Os links para download estão no [The Comprehensive R Archive Network](https://cran.r-project.org/) (aka CRAN).
-A versão mais recente é a `4.4.2`, mas pode usar `>= 4.1.x` se já a tiver instalada.
+Os links para download estão no [The Comprehensive R Archive Network](https://cran.r-project.org/) (aka CRAN). A versão mais recente é a `4.4.2`, mas pode usar `>= 4.1.x` se já a tiver instalada.
 
 :::: {.panel-tabset .nav-pills}
 ### Windows
@@ -29,19 +28,16 @@ Escolha o segundo link para processador ARM (mais recente), e o primeiro link ca
 
 ### Mac
 
-[Download R-4.4.2 para MacOX](https://cran.r-project.org/bin/macosx/).
-Terá de escolher entre a versão *arm64* ou a versão *x86-64*.
+[Download R-4.4.2 para MacOX](https://cran.r-project.org/bin/macosx/). Terá de escolher entre a versão *arm64* ou a versão *x86-64*.
 
 Transfira o ficheiro `.pkg` e instale-o como habitualmente.
 ::::
 
-Após esta instalação, não é necessário abrir o R.
-Prossiga com a instalação do RStudio.
+Após esta instalação, não é necessário abrir o R. Prossiga com a instalação do RStudio.
 
 ## RStudio
 
-O RStudio Desktop é um ambiente de desenvolvimento integrado (IDE) para o **R**.
-Inclui uma consola, um editor de código com realce para as funções de bases, bem como ferramentas para fazer gráficos, e análises estatísticas.
+O RStudio Desktop é um ambiente de desenvolvimento integrado (IDE) para o **R**. Inclui uma consola, um editor de código com realce para as funções de bases, bem como ferramentas para fazer gráficos, e análises estatísticas.
 
 O RStudio está disponível para descarregamento gratuito em [Posit RStudio](https://posit.co/download/rstudio-desktop/).
 
@@ -85,9 +81,7 @@ install.packages("stplanr") # opcional
 
 ## Java Development Kit
 
-Para utilizar o pacote `{r5r}` é necessário ter o *Java Development Kit (JDK) 21* instalado no computador.
-Existem inúmeras implementações de código aberto do JDK.
-A maneira mais fácil de instalar o JDK é usando o novo pacote [{rJavaEnv}](https://www.ekotov.pro/rJavaEnv/) no R.
+Para utilizar o pacote `{r5r}` é necessário ter o *Java Development Kit (JDK) 21* instalado no computador. Existem inúmeras implementações de código aberto do JDK. A maneira mais fácil de instalar o JDK é usando o novo pacote [{rJavaEnv}](https://www.ekotov.pro/rJavaEnv/) no R.
 
 ```{r}
 # verificar a versão de Java atualmente instalada (se existir) 
