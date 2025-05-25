@@ -14,21 +14,21 @@ O **R** e o **RStudio** são softwares que necessitam de download e instalação
 
 O **R** ou **R stats** (como também é conhecido) é uma linguagem de programação e um ambiente de software livre para computação estatística e gráficos apoiado pela R Foundation for Statistical Computing.
 
-Os links para download estão no [The Comprehensive R Archive Network](https://cran.r-project.org/) (aka CRAN). A versão mais recente é a `4.4.2`, mas pode usar `>= 4.1.x` se já a tiver instalada.
+Os links para download estão no [The Comprehensive R Archive Network](https://cran.r-project.org/) (aka CRAN). A versão mais recente é a `4.5.0`, mas pode usar `>= 4.1.x` se já a tiver instalada.
 
 :::: {.panel-tabset .nav-pills}
 ### Windows
 
-[Download R-4.4.2 para Windows](https://cran.r-project.org/bin/windows/base/R-4.4.2-win.exe) e correr o ficheiro executável.
+[Download R-4.5.0 para Windows](https://cran.rstudio.com/bin/windows/base/R-4.5.0-win.exe) e correr o ficheiro executável.
 
 ::: {.callout-important icon="false"}
-Deverá também instalar o [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools44/rtools.html), que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\
+Deverá também instalar o [Rtools](https://cran.rstudio.com/bin/windows/Rtools/rtools45/rtools.html), que é uma coleção de ferramentas necessárias para construir pacotes R no Windows.\
 Escolha o segundo link para processador ARM (mais recente), e o primeiro link caso contrário.
 :::
 
 ### Mac
 
-[Download R-4.4.2 para MacOX](https://cran.r-project.org/bin/macosx/). Terá de escolher entre a versão *arm64* ou a versão *x86-64*.
+[Download R-4.5.0 para MacOX](https://cran.r-project.org/bin/macosx/). Terá de escolher entre a versão *arm64* ou a versão *x86-64*.
 
 Transfira o ficheiro `.pkg` e instale-o como habitualmente.
 ::::
@@ -44,11 +44,11 @@ O RStudio está disponível para descarregamento gratuito em [Posit RStudio](htt
 ::: {.panel-tabset .nav-pills}
 ### Windows 10/11
 
-[Download RStudio 2024.09](https://download1.rstudio.org/electron/windows/RStudio-2024.09.1-394.exe) e correr o ficheiro executável.
+[Download RStudio 2025.05](https://download1.rstudio.org/electron/windows/RStudio-2025.05.0-496.exe) e correr o ficheiro executável.
 
 ### MacOS
 
-[Download RStudio 2024.09](https://download1.rstudio.org/electron/macos/RStudio-2024.09.1-394.dmg) e instale-o como habitualmente.
+[Download RStudio 2025.05](https://download1.rstudio.org/electron/macos/RStudio-2025.05.0-496.dmg) e instale-o como habitualmente.
 :::
 
 ## Pacotes de R
@@ -92,9 +92,7 @@ rJavaEnv::java_check_version_rjava()
 rJavaEnv::rje_consent(provided = TRUE)
 
 # instalar Java 21
-rJavaEnv::java_quick_install(
-  version = 21,
-  distribution = 'Corretto')
+rJavaEnv::java_quick_install(version = 21)
 
 # verificar se o Java foi instalado com sucesso
 rJavaEnv::java_check_version_rjava()
