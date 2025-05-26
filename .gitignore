@@ -58,3 +58,6 @@ _book/
 
 analiseML/
 !analiseML/analiseML.Rmd
+data/r5r/network.dat
+data/r5r/network_settings.json
+data/r5r_lisboa.zip
