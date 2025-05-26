@@ -1,0 +1,269 @@
+---
+title: "Análise de GTFS"
+# format:
+#   pdf:
+#     prefer-html: true
+---
+
+## Pacotes de R
+
+Existem alguns bons pacotes R para ler e manipular dados GTFS, tais como:
+
+-   [`tidytransit`](https://r-transit.github.io/tidytransit/)
+-   [`gtfstools`](https://ipeagit.github.io/gtfstools/)
+-   [`gtfsio`](https://r-transit.github.io/gtfsio/index.html)
+-   [`gtfsrouter`](https://urbananalyst.github.io/gtfsrouter/) - útil para criar tabela `transfers.txt` quando não existe.
+-   [`geotransit`](https://github.com/tripwright/geotransit) - para descarregar todos os GTFS presentes numa determinada área
+-   [`GTFSwizard`](https://opatp.github.io/GTFSwizard/) - análises rápidas e interativas
+-   [`GTFShift`](https://u-shift.github.io/GTFShift/) - análises de frequências para planeamento
+
+::: {.callout-caution appearance="simple"}
+Atenção que os pacotes podem partilhar os mesmos nomes de funções, pelo que é importante utilizar um delas de cada vez.
+:::
+
+## Exemplo de análise GTFS em R
+
+### Metro Lisboa
+
+Vamos importar os dados de GTFS [diretamente](https://www.metrolisboa.pt/google_transit/googleTransit.zip) do website do Metro de Lisboa
+
+```{r}
+#| message: false 
+#| fig-format: png
+## Pacotes
+library(tidyverse)
+library(tidytransit)
+library(mapview)
+
+# Ler dados GTFS
+METRO = read_gtfs("https://github.com/rosamfelix/EITbraga/releases/download/latest/metro_gtfs.zip")
+summary(METRO)
+```
+
+Este ficheiro inclui as transferências, mas não inclui as shapes.
+Neste caso não é relevante, elas podem ser depois geradas com a informação que já existe.
+
+Podemos ver a localização das 50 estações do Metro:
+
+```{r}
+#| code-fold: true
+#| fig-format: png
+ESTACOES_metro = stops_as_sf(METRO$stops) # converter texto para geometria
+mapview(ESTACOES_metro)
+```
+
+**Desafio:** Ver quanto tempo demora a alcançar cada estação a partir da Baixa
+
+1.  num dia útil em hora de ponta
+2.  num domingo de noite
+
+#### Dia útil em hora de ponta
+
+Filtramos os dados para o dia de hoje, terça-feira, entre as 7h30 e as 9h00, e calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras.
+
+```{r}
+stop_times_metro = filter_stop_times(METRO, "2025-05-28", "07:30:00", "09:00:00")
+duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") # Baixa / Chiado é a estação de metro da Baixa
+
+summary(duracao_viagem$travel_time/60) # resumo em minutos
+```
+
+Sem contar com o tempo de espera na Baixa-Chiado, é possível alcançar qualquer estação da rede **em menos de** 26.7 minutos, em hora de ponta.
+
+#### Domingo de noite
+
+Filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30, e novamente calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras
+
+```{r}
+stop_times_metro = filter_stop_times(METRO, "2025-06-01", "21:30:00", "22:30:00")
+duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") 
+
+summary(duracao_viagem$travel_time/60) # resumo em minutos
+```
+
+Num Domingo de noite, é possível alcançar qualquer estação da rede **em menos de** 29.9 minutos.
+
+#### Visualizar dados num mapa
+
+```{r}
+#| include: false
+# Limite município Lisboa
+MunicipiosGEO = sf::st_read("data/Municipalities_geo.gpkg")
+LisboaGEO = MunicipiosGEO |> filter(Municipality == "Lisboa")
+```
+
+Podemos criar um gráfico que mostre o tempo que cada estação demora a alcançar, a partir da Baixa-Chiado.
+
+Juntamos primeiro os tempos estimados aos dados georreferenciados das estações
+
+```{r}
+#| code-fold: true
+duracao_viagem_BC_HP = ESTACOES_metro |> 
+  left_join(duracao_viagem, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados às estaçoes
+  filter(!is.na(travel_time)) # remover as plataformas não usadas
+```
+
+E "colorimos" o tempo de viagem que demora (*no mínímo*) a alcançar cada estação
+
+```{r}
+#| code-fold: true
+##| code-summary: "Mostrar código"
+ggplot(duracao_viagem_BC_HP) +
+  geom_sf(aes(color = travel_time/60)) +
+  ggtitle("Alcance desde a estação Baixa-Chiado (Metro)",
+          subtitle = "às 7h30 de Terça, 28 Maio 2025") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = LisboaGEO, # limite Lisboa
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+```
+
+### Transportes Urbanos de Braga (TUB)
+
+Podemos fazer o mesmo exercício com os [dados dos TUB](https://tub.pt/developer/gtfs/feed/tub.zip).
+O ficheiro original não inclui o `transfers.txt`, e foi gerado automaticamente um com a função [`gtfsrouter::gtfs_transfer_table()`](https://urbananalyst.github.io/gtfsrouter/reference/gtfs_transfer_table.html)
+
+```{r}
+#| message: false 
+# Ler dados GTFS
+TUB = read_gtfs("https://github.com/rosamfelix/EITbraga/releases/download/latest/tub_gtfs.zip")
+summary(TUB)
+```
+
+Este ficheiro já inclui as transferências, e também as rotas (`shapes`).
+
+Podemos ver a localização das 1980 paragens dos TUB:
+
+```{r}
+#| code-fold: true
+#| fig-format: png
+ESTACOES_tub = stops_as_sf(TUB$stops) # converter texto para geometria
+mapview(ESTACOES_tub) # visualizar as 1980 paragens
+```
+
+```{r}
+#| include: false
+# Limite município Braga
+ConcelhosPT = sf::st_read("data/MunicipalitiesPT_geo.gpkg")
+BragaGEO = ConcelhosPT |> filter(con_name == "Braga")
+# Estação perto do IPCA
+MONSENHORAIROSA = ESTACOES_tub |> filter(stop_name == "MONSENHOR AIROSA") # a paragem do IPCA
+```
+
+E as 395 rotas (inclui variantes, idas e voltas):
+
+```{r}
+#| code-fold: true
+#| fig-format: png
+ROTAS_tub = tidytransit::shapes_as_sf(TUB$shapes) # converter texto para geometria
+mapview(ROTAS_tub, zcol = "shape_id") # visualizar
+```
+
+Vamos fazer o mesmo **desafio**, mas com origem na paragem perto do IPCA (Monsenhor Airosa).
+
+#### Dia útil em hora de ponta
+
+Filtramos os dados para o dia de hoje, quarta-feira, entre as 7h30 e as 9h00, e calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras.
+
+```{r}
+stop_times_tub1 = filter_stop_times(TUB, "2025-05-27", "07:30:00", "09:00:00")
+duracao_viagem1 = travel_times(stop_times_tub1, "MONSENHOR AIROSA", stop_dist_check = FALSE)
+
+nrow(duracao_viagem1)
+summary(duracao_viagem1$travel_time/60) # resumo em minutos
+```
+
+Sem contar com o tempo de espera nparagem inicial, é possível alcançar 935 estações da rede (47%) **em menos de** 64 minutos (1h04), em hora de ponta - no intervalo de 1h30 definido.
+
+##### **Outras estatísticas**
+
+```{r}
+hist(duracao_viagem1$travel_time/60, breaks = 20) # histograma
+abline(v = mean(duracao_viagem1$travel_time/60), col = "red") # linha de média
+abline(v = median(duracao_viagem1$travel_time/60), col = "blue") # linha de mediana
+round(prop.table(table(duracao_viagem1$transfers))*100, 1) # percentagem de transferências
+```
+
+Apenas **6%** das paragens são alcançáveis diretamente (**sem transferência de autocarro**).
+62% são alcançáveis com 1 transferência no máximo, e 4% das paragens necessitam de 4 autocarros para ser alcançadas (3 transferências).
+
+#### Domingo de noite
+
+Filtramos os dados para o próximo Domingo entre as 20h00 e as 22h00, e novamente calculamos a duração da viagem mais rápida entre as paragens de autocarro do Cais do Sodré e todas as outras
+
+```{r}
+stop_times_tub2 = filter_stop_times(TUB, "2025-06-01", "20:00:00", "22:00:00")
+duracao_viagem2 = travel_times(stop_times_tub2, "MONSENHOR AIROSA", stop_dist_check = FALSE)
+
+nrow(duracao_viagem2)
+summary(duracao_viagem2$travel_time/60) # resumo em minutos
+```
+
+Num Domingo de noite, é possível alcançar 398 estações da rede (20%) **em menos de** 56 minutos.
+
+#### Visualizar dados num mapa
+
+Podemos criar dois mapas que comparem o tempo que cada paragem demora a alcançar, a partir do IPCA, para os períodos definidos.
+
+Juntamos primeiro os tempos estimados aos dados georreferenciados das estações
+
+```{r}
+#| code-fold: true
+# hora de ponta
+duracao_viagem_TUB_HP = ESTACOES_tub |> 
+  left_join(duracao_viagem1, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
+  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
+  filter(travel_time < 60*60) # remover viagens com mais de 60 minutos
+
+# domingo de noite
+duracao_viagem_TUB_Dom = ESTACOES_tub |> 
+  left_join(duracao_viagem2, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
+  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
+  filter(travel_time < 60*60) |>  # remover viagens com mais de 60 minutos
+  mutate(intervalo = case_when(
+    travel_time < 15*60 ~ "até 15 min",
+    travel_time < 30*60 ~ "até 30 min",
+    travel_time < 45*60 ~ "até 45 min",
+    TRUE ~ "até 60 min"
+  )) # criar uma variável com o intervalo de tempo
+```
+
+E "colorimos" o tempo de viagem que demora (*no mínímo*) a alcançar cada estação
+
+```{r}
+#| code-fold: true
+ggplot(duracao_viagem_TUB_HP) +
+  geom_sf(aes(color = travel_time/60))+
+  ggtitle("Alcance desde o IPCA (TUB)",
+          subtitle = "às 7h30 de Terça, 27 Maio 2025 - máx 1 transf") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = MONSENHORAIROSA, fill = "black", size = 5) + # destacar a paragem do IPCA
+  geom_sf(data = BragaGEO,
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+
+ggplot(duracao_viagem_TUB_Dom) +
+  geom_sf(aes(color = intervalo))+ # mudar para escala discreta
+  scale_color_manual(values = c("até 15 min" = "#119da4",
+                                "até 30 min" = "#0c7489", 
+                                "até 45 min" = "#13505B",
+                                "até 60 min" = "#040404")) +
+  ggtitle("Alcance desde o IPCA (TUB)",
+          subtitle = "às 20h30 de Domingo, 1 Junho 2025 - máx 1 transf") +
+  labs(color = "Tempo de viagem [min]") +
+  geom_sf(data = MONSENHORAIROSA, fill = "black", size = 5) + # destacar a paragem do IPCA
+  geom_sf(data = BragaGEO,
+          fill = "transparent",
+          color = "grey30") +
+  theme_bw()
+```
+
+Como podemos visualmnente comparar, em hora de ponta é possível chegar de autocarro a bem mais paragens que num Domingo de noite.
+
+::: callout-tip
+### TPC
+
+Experimente importar, explorar e visualizar os dados GTFS da Carris Metropolitana.
+:::

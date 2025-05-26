@@ -7,15 +7,18 @@ format:
 
 ## GTFS
 
-O General Transit Feed Specification (GTFS) é um [formato normalizado](https://gtfs.org/documentation/schedule/reference/) de dados abertos para documentar informações sobre transportes públicos, incluindo: itinerários, horários, localizações de paragens, padrões de calendário, viagens e possíveis transbordos. As operadoras de transporte público são responsáveis por manter os dados actualizados[^gtfs-1].
+O General Transit Feed Specification (GTFS) é um [formato normalizado](https://gtfs.org/documentation/schedule/reference/) de dados abertos para documentar informações sobre transportes públicos, incluindo: itinerários, horários, localizações de paragens, padrões de calendário, viagens e possíveis transbordos.
+As operadoras de transporte público são responsáveis por manter os dados actualizados[^gtfs-1].
 
 [^gtfs-1]: Dados de operadora de transportes que não estejam atualizados poderão levar a uma péssima experiência ao utilizador, uma vez que a realidade não corresponde às expetativas criadas pelos dados (desatualizados).
 
 {{< video https://youtu.be/SDz2460AjNo >}}
 
-Os dados GTFS são utilizados em várias aplicações, como o Google Maps, City Mapper, entre outros, para fornecer direcções de transportes públicos. Podem ser disponibilizadas para uma cidade, uma região ou mesmo um país inteiro, dependendo da operadora de TP.
+Os dados GTFS são utilizados em várias aplicações, como o Google Maps, City Mapper, entre outros, para fornecer direcções de transportes públicos.
+Podem ser disponibilizadas para uma cidade, uma região ou mesmo um país inteiro, dependendo da operadora de TP.
 
-Os dados encontram-se num ficheiro `.zip` que inclui vários ficheiros `.txt` (um para cada tipo de informação) com relações tabulares (campos comuns). Os mesmos podem ser facilmente editados em qualquer computador.
+Os dados encontram-se num ficheiro `.zip` que inclui vários ficheiros `.txt` (um para cada tipo de informação) com relações tabulares (campos comuns).
+Os mesmos podem ser facilmente editados em qualquer computador.
 
 ![Estrutura de um ficheiro GTFS. Fonte: trilliumtransit.com](images/clipboard-2676687965.png){fig-align="center" width="493"}
 
@@ -27,7 +30,8 @@ Os GTFS podem ser **estáticos** (ou agendados / *schedule*) - por exemplo para 
 
 O GTFS Schedule é uma especificação que define um formato comum para informações estáticas sobre transportes públicos (agendadas, ou que não alteram dinamicamente).
 
-Cada ficheiro descreve informação sobre transportes, como paragens, percursos, viagens, etc. Na sua forma mais simples, um conjunto de dados GTFS é composto por 7 ficheiros:
+Cada ficheiro descreve informação sobre transportes, como paragens, percursos, viagens, etc.
+Na sua forma mais simples, um conjunto de dados GTFS é composto por 7 ficheiros:
 
 -   `agency.txt`
 -   `routes.txt`
@@ -53,273 +57,25 @@ Um exemplo de GTFS-Realtime são os dados da [Carris Metropolitana](https://api.
 
 ![Posicionamento em tempo real de autocarros Carris com passagem no Saldanha. Fonte: Google Maps](images/clipboard-1057604246.png){fig-align="center" width="298"}
 
-## Fontes online de dados GTFS
+### Fontes online de dados GTFS
 
-Os seguintes websites incluem vários GTFS de operadoras, a **nível mundial**. Uma vantagem destes agregadores de dados é que muitas vezes também disponibilizam **versões** por data - útil para análises do ano X.
+Os seguintes websites incluem vários GTFS de operadoras, a **nível mundial**.
+Uma vantagem destes agregadores de dados é que muitas vezes também disponibilizam **versões** por data - útil para análises do ano X.
 
 -   [TransitLand](https://www.transit.land)
 -   [Mobility Database](https://mobilitydatabase.org/)
 
-Algumas operadoras de Transporte Público nacionais também disponibilizam os seus dados abertos nos websites. ([Ver NAP Portugal](open-data.qmd#nap))
+Algumas operadoras de Transporte Público nacionais também disponibilizam os seus dados abertos nos websites.
+([Ver NAP Portugal](open-data.qmd#nap))
 
 ::: {.callout-note appearance="simple"}
 Podemos juntar vários GTFS`.zip` num único MegaGTFS`.zip`
 :::
 
-## Pacotes de R
-
-Existem alguns bons pacotes R para ler e manipular dados GTFS, tais como:
-
--   [`tidytransit`](https://r-transit.github.io/tidytransit/)
--   [`gtfstools`](https://ipeagit.github.io/gtfstools/)
--   [`gtfsio`](https://r-transit.github.io/gtfsio/index.html)
--   [`gtfsrouter`](https://urbananalyst.github.io/gtfsrouter/) - útil para criar tabela `transfers.txt` quando não existe.
--   [`geotransit`](https://github.com/tripwright/geotransit) - para descarregar todos os GTFS presentes numa determinada área
--   [`GTFSwizard`](https://opatp.github.io/GTFSwizard/) - análises rápidas e interativas
-
-::: {.callout-caution appearance="simple"}
-Atenção que os pacotes podem partilhar os mesmos nomes de funções, pelo que é importante utilizar um delas de cada vez.
-:::
-
-## Exemplo em R
-
-### Metro Lisboa
-
-Vamos importar os dados de GTFS [diretamente](https://www.metrolisboa.pt/google_transit/googleTransit.zip) do website do Metro de Lisboa
-
-```{r}
-#| message: false 
-#| fig-format: png
-## Pacotes
-library(tidyverse)
-library(tidytransit)
-library(mapview)
-
-# Ler dados GTFS
-METRO = read_gtfs("https://github.com/rosamfelix/PGmob360/releases/download/2024.11/metro_gtfs.zip")
-summary(METRO)
-```
-
-Este ficheiro inclui as transferências, mas não inclui as rotas. Neste caso não é relevante, elas podem ser depois geradas com a informação que já existe.
-
-Podemos ver a localização das 50 estações do Metro:
-
-```{r}
-#| code-fold: true
-#| fig-format: png
-ESTACOES_metro = stops_as_sf(METRO$stops) # converter texto para geometria
-mapview(ESTACOES_metro)
-```
-
-**Desafio:** Ver quanto tempo demora a alcançar cada estação a partir da Baixa
-
-1.  num dia útil em hora de ponta
-2.  num domingo de noite
-
-#### Dia útil em hora de ponta
-
-Filtramos os dados para o dia de hoje, quarta-feira, entre as 7h30 e as 9h00, e calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras.
-
-```{r}
-stop_times_metro = filter_stop_times(METRO, "2024-11-20", "07:30:00", "09:00:00")
-duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") # Baixa / Chiado é a estação de metro da Baixa
-
-summary(duracao_viagem$travel_time/60) # resumo em minutos
-```
-
-Sem contar com o tempo de espera na Baixa-Chiado, é possível alcançar qualquer estação da rede **em menos de** 26.5 minutos, em hora de ponta.
-
-#### Domingo de noite
-
-Filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30, e novamente calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras
-
-```{r}
-stop_times_metro = filter_stop_times(METRO, "2024-11-24", "21:30:00", "22:30:00")
-duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") 
-
-summary(duracao_viagem$travel_time/60) # resumo em minutos
-```
-
-Num Domingo de noite, é possível alcançar qualquer estação da rede **em menos de** 32.3 minutos.
-
-#### Visualizar dados num mapa
-
-```{r}
-#| include: false
-# Limite município Lisboa
-MunicipiosGEO = sf::st_read("data/Municipalities_geo.gpkg")
-LisboaGEO = MunicipiosGEO |> filter(Municipality == "Lisboa")
-```
-
-Podemos criar um gráfico que mostre o tempo que cada estação demora a alcançar, a partir da Baixa-Chiado.
-
-Juntamos primeiro os tempos estimados aos dados georreferenciados das estações
-
-```{r}
-#| code-fold: true
-duracao_viagem_BC_HP = ESTACOES_metro |> 
-  left_join(duracao_viagem, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados às estaçoes
-  filter(!is.na(travel_time)) # remover as plataformas não usadas
-```
-
-E "colorimos" o tempo de viagem que demora (*no mínímo*) a alcançar cada estação
-
-```{r}
-#| code-fold: true
-##| code-summary: "Mostrar código"
-ggplot(duracao_viagem_BC_HP) +
-  geom_sf(aes(color = travel_time/60)) +
-  ggtitle("Alcance desde a estação Baixa-Chiado (Metro)",
-          subtitle = "às 7h30 de Quarta, 20 Nov 2024") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO, # limite Lisboa
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-```
-
-### Transportes Urbanos de Braga (TUB)
-
-Podemos fazer o mesmo exercício com os [dados da TUB](https://tub.pt/developer/gtfs/feed/tub.zip). O ficheiro original não inclui o transfers.txt, e foi gerado automaticamente um com a função [`gtfsrouter::gtfs_transfer_table()`](https://urbananalyst.github.io/gtfsrouter/reference/gtfs_transfer_table.html)
-
-```{r}
-#| message: false 
-# Ler dados GTFS
-CARRIS = read_gtfs("https://github.com/rosamfelix/PGmob360/releases/download/2024.11/carris_gtfs.zip")
-summary(CARRIS)
-```
-
-Este ficheiro já inclui as transferências, e também as rotas.
-
-Podemos ver a localização das 2313 estações da Carris:
-
-```{r}
-#| code-fold: true
-#| fig-format: png
-ESTACOES_carris = stops_as_sf(CARRIS$stops) # converter texto para geometria
-mapview(ESTACOES_carris)
-```
-
-E as 1739 rotas (inclui variantes, idas e voltas):
-
-```{r}
-#| code-fold: true
-#| fig-format: png
-ROTAS_carris = shapes_as_sf(CARRIS$shapes) # converter texto para geometria
-mapview(ROTAS_carris, zcol = "shape_id") # visualizar
-```
-
-Vamos fazer o mesmo **desafio**, mas com origem nas paragens do Cais do Sodré.
-
-#### Dia útil em hora de ponta
-
-Filtramos os dados para o dia de hoje, quarta-feira, entre as 7h30 e as 9h00, e calculamos a duração da viagem mais rápida entre a estação Baixa-Chiado e todas as outras.
-
-```{r}
-stop_times_carris1 = filter_stop_times(CARRIS, "2024-11-20", "07:30:00", "09:00:00")
-duracao_viagem1 = travel_times(stop_times_carris1, "Cais Sodré", stop_dist_check = FALSE)
-
-nrow(duracao_viagem1)
-summary(duracao_viagem1$travel_time/60) # resumo em minutos
-```
-
-Sem contar com o tempo de espera na Baixa-Chiado, é possível alcançar 1114 estações da rede (48%) **em menos de** 82 minutos (1h22), em hora de ponta - no intervalo de 1h30 definido.
-
-##### **Outras estatísticas**
-
-```{r}
-hist(duracao_viagem1$travel_time/60, breaks = 20) # histograma
-abline(v = mean(duracao_viagem1$travel_time/60), col = "red") # linha de média
-abline(v = median(duracao_viagem1$travel_time/60), col = "blue") # linha de mediana
-round(prop.table(table(duracao_viagem1$transfers))*100, 1) # percentagem de transferências
-```
-
-**19%** das paragens são alcançáveis diretamente (**sem transferência de autocarro**). 62% são alcançáveis com 1 transferência no máximo, e 2.6% das paragens necessitam de 5 autocarros para ser alcançadas (4 transferências).
-
-#### Domingo de noite
-
-Filtramos os dados para o próximo Domingo entre as 22h30 e as 23h30, e novamente calculamos a duração da viagem mais rápida entre as paragens de autocarro do Cais do Sodré e todas as outras
-
-```{r}
-stop_times_carris2 = filter_stop_times(CARRIS, "2024-11-24", "22:00:00", "23:30:00")
-duracao_viagem2 = travel_times(stop_times_carris2, "Cais Sodré", stop_dist_check = FALSE)
-
-nrow(duracao_viagem2)
-summary(duracao_viagem2$travel_time/60) # resumo em minutos
-```
-
-Num Domingo de noite, é possível alcançar 912 estações da rede (39%) **em menos de** 67 minutos.
-
-#### Visualizar dados num mapa
-
-Podemos criar dois mapas que comparem o tempo que cada paragem demora a alcançar, a partir ddo Cais do Sodré, para os períodos definidos.
-
-Juntamos primeiro os tempos estimados aos dados georreferenciados das estações
-
-```{r}
-#| code-fold: true
-# hora de ponta
-duracao_viagem_CS_HP = ESTACOES_carris |> 
-  left_join(duracao_viagem1, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
-  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
-  filter(travel_time < 60*60) |> # remover viagens com mais de 60 minutos
-  filter(!stop_id %in% c(19001,14601,14602)) # remover as pagarens em Almada
-
-# domingo de noite
-duracao_viagem_CS_Dom = ESTACOES_carris |> 
-  left_join(duracao_viagem2, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
-  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
-  filter(travel_time < 60*60) |>  # remover viagens com mais de 60 minutos
-  mutate(intervalo = case_when( # criar uma variável com o intervalo de tempo
-    travel_time < 15*60 ~ "até 15 min",
-    travel_time < 30*60 ~ "até 30 min",
-    travel_time < 45*60 ~ "até 45 min",
-    TRUE ~ "até 60 min" # tudo o resto..
-  ))
-```
-
-E "colorimos" o tempo de viagem que demora (*no mínímo*) a alcançar cada estação
-
-```{r}
-#| code-fold: true
-ggplot(duracao_viagem_CS_HP) +
-  geom_sf(aes(color = travel_time/60))+
-  ggtitle("Alcance desde o Cais do Sodré (Carris)",
-          subtitle = "às 7h30 de Quarta, 20 Nov 2024 - máx 1 transf") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO,
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-
-ggplot(duracao_viagem_CS_Dom) +
-  geom_sf(aes(color = intervalo))+ # mudar para escala discreta
-  scale_color_manual(values = c("até 15 min" = "#119da4",
-                                "até 30 min" = "#0c7489", 
-                                "até 45 min" = "#13505B",
-                                "até 60 min" = "#040404")) +
-  ggtitle("Alcance desde o Cais do Sodré (Carris)",
-          subtitle = "às 22h00 de Domingo, 24 Nov 2024 - máx 1 transf") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO,
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-```
-
-Como podemos visualmnente comparar, em hora de ponta é possível chegar de autocarro a bem mais paragens que num Domingo de noite.
-
-::: callout-tip
-#### TPC
-
-Experimente importar, explorar e visualizar os dados GTFS da Carris Metropolitana.
-:::
-
 ## NeTEX
 
-Outro formato semelhande ao GTFS é o [NeTEX](https://transmodel-cen.eu/index.php/netex/) (Network Timetable EXchange). Este também é usado por algumas operadoras de TP em Portugal.
+Outro formato semelhande ao GTFS é o [NeTEX](https://transmodel-cen.eu/index.php/netex/) (Network Timetable EXchange).
+Este também é usado por algumas operadoras de TP em Portugal.
 
 {{< video https://youtu.be/KXSI-iRuNfc >}}
 

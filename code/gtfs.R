@@ -33,7 +33,7 @@ mapview(ESTACOES_metro) # visualizar
 
 # 1. num dia útil em hora de ponta
 # filtramos os dados para o dia de hoje entre as 7h30 e as 9h00
-stop_times_metro = filter_stop_times(METRO, "2024-11-20", "07:30:00", "09:00:00")
+stop_times_metro = filter_stop_times(METRO, "2025-05-28", "07:30:00", "09:00:00")
 duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") # Baixa / Chiado é a estação de metro da Baixa
 
 summary(duracao_viagem$travel_time/60) # resumo em minutos
@@ -42,7 +42,7 @@ summary(duracao_viagem$travel_time/60) # resumo em minutos
 
 # 2. num domingo de tarde
 # filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30
-stop_times_metro = filter_stop_times(METRO, "2024-11-24", "21:30:00", "22:30:00")
+stop_times_metro = filter_stop_times(METRO, "2025-06-01", "21:30:00", "22:30:00")
 duracao_viagem = travel_times(stop_times_metro, "Baixa / Chiado") # Baixa / Chiado é a estação de metro da Baixa
 
 summary(duracao_viagem$travel_time/60) # resumo em minutos
@@ -56,102 +56,7 @@ duracao_viagem_BC_HP = ESTACOES_metro |>
 ggplot(duracao_viagem_BC_HP) +
   geom_sf(aes(color = travel_time/60))+
   ggtitle("Alcance desde a estação Baixa-Chiado (Metro)",
-          subtitle = "às 7h30 de Quarta, 20 Nov 2024") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO,
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-
-
-
-# Carris Lisboa -----------------------------------------------------------
-
-CARRIS = read_gtfs("https://github.com/rosamfelix/PGmob360/releases/download/2024.11/carris_gtfs.zip")
-validate_gtfs(CARRIS) # validar
-# foi criado um ficheiro transfers.txt que não existia no original, com o gtfsrouter
-
-# Paragens
-View(CARRIS$stops)
-ESTACOES_carris = stops_as_sf(CARRIS$stops) # converter texto para geometria
-mapview(ESTACOES_carris) # visualizar
-
-# Percursos
-ROTAS_carris = tidytransit::shapes_as_sf(CARRIS$shapes) # converter texto para geometria
-plot(ROTAS_carris) # ver as 1739 rotas
-mapview(ROTAS_carris, zcol = "shape_id") # visualizar
-
-
-# 1. num dia útil em hora de ponta, a partir do Cais do Sodré
-
-# filtramos os dados para o dia de hoje entre as 7h30 e as 9h00
-stop_times_carris1 = filter_stop_times(CARRIS, "2024-11-20", "07:30:00", "09:00:00")
-duracao_viagem1 = travel_times(stop_times_carris1, "Cais Sodré", stop_dist_check = FALSE)
-
-# estatísticas
-summary(duracao_viagem1$travel_time/60) # resumo em minutos
-hist(duracao_viagem1$travel_time/60, breaks = 20) # histograma
-abline(v = mean(duracao_viagem1$travel_time/60), col = "red") # linha de média
-abline(v = median(duracao_viagem1$travel_time/60), col = "blue") # linha de mediana
-round(prop.table(table(duracao_viagem1$transfers))*100, 1) # percentagem de transferências
-
-duracao_viagem_CS_HP = ESTACOES_carris |> 
-  left_join(duracao_viagem1, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
-  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
-  filter(travel_time < 60*60) |> # remover viagens com mais de 60 minutos
-  filter(!stop_id %in% c(19001,14601,14602)) # remover as pagarens em Almada
-  
-# mapa com as estações que se conseguem alcançar em contínuo
-ggplot(duracao_viagem_CS_HP) +
-  geom_sf(aes(color = travel_time/60))+
-  ggtitle("Alcance desde o Cais do Sodré (Carris)",
-          subtitle = "às 7h30 de Quarta, 20 Nov 2024 - máx 1 transf") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO,
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-
-# 2. num domingo de tarde
-# filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30
-stop_times_carris2 = filter_stop_times(CARRIS, "2024-11-24", "22:00:00", "23:30:00")
-duracao_viagem2 = travel_times(stop_times_carris2, "Cais Sodré", stop_dist_check = FALSE)
-
-summary(duracao_viagem2$travel_time/60) # resumo em minutos
-
-duracao_viagem_CS_Dom = ESTACOES_carris |> 
-  left_join(duracao_viagem2, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
-  filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
-  filter(travel_time < 60*60) |>  # remover viagens com mais de 60 minutos
-  mutate(intervalo = case_when(
-    travel_time < 15*60 ~ "até 15 min",
-    travel_time < 30*60 ~ "até 30 min",
-    travel_time < 45*60 ~ "até 45 min",
-    TRUE ~ "até 60 min"
-  )) # criar uma variável com o intervalo de tempo
-
-# mapa com escala contínua de tempo
-ggplot(duracao_viagem_CS_Dom) +
-  geom_sf(aes(color = travel_time/60))+
-  ggtitle("Alcance desde o Cais do Sodré (Carris)",
-          subtitle = "às 22h00 de Domingo, 24 Nov 2024 - máx 1 transf") +
-  labs(color = "Tempo de viagem [min]") +
-  geom_sf(data = LisboaGEO,
-          fill = "transparent",
-          color = "grey30") +
-  theme_bw()
-
-# mapa com as estações que se conseguem alcançar em 15, 30 e 45 minutos
-ggplot(duracao_viagem_CS_Dom) +
-  geom_sf(aes(color = intervalo))+ # mudar para escala discreta
-  scale_color_manual(values = c("até 15 min" = "#119da4",
-                                "até 30 min" = "#0c7489", 
-                                "até 45 min" = "#13505B",
-                                "até 60 min" = "#040404")) +
-  ggtitle("Alcance desde o Cais do Sodré (Carris)",
-          subtitle = "às 22h00 de Domingo, 24 Nov 2024 - máx 1 transf") +
+          subtitle = "às 7h30 de Terça, 28 Maio 2025") +
   labs(color = "Tempo de viagem [min]") +
   geom_sf(data = LisboaGEO,
           fill = "transparent",
@@ -180,11 +85,12 @@ plot(ROTAS_tub) # ver as 395 rotas
 mapview(ROTAS_tub, zcol = "shape_id") # visualizar
 
 
-# 1. num dia útil em hora de ponta, a partir do Cais do Sodré
+# 1. num dia útil em hora de ponta, a partir da Monsenhor Airosa
 
 # filtramos os dados para o dia de hoje entre as 7h30 e as 9h00
 stop_times_tub1 = filter_stop_times(TUB, "2025-05-27", "07:30:00", "09:00:00")
 duracao_viagem1 = travel_times(stop_times_tub1, "MONSENHOR AIROSA", stop_dist_check = FALSE)
+# 935 viagens
 
 # estatísticas
 summary(duracao_viagem1$travel_time/60) # resumo em minutos
@@ -196,9 +102,7 @@ round(prop.table(table(duracao_viagem1$transfers))*100, 1) # percentagem de tran
 duracao_viagem_TUB_HP = ESTACOES_tub |> 
   left_join(duracao_viagem1, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
   filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
-  filter(travel_time < 60*60) |> # remover viagens com mais de 60 minutos
-  filter(!stop_id %in% c(19001,14601,14602)) # remover as pagarens em Almada
+  filter(travel_time < 60*60) # remover viagens com mais de 1 hora
 
 # mapa com as estações que se conseguem alcançar em contínuo
 ggplot(duracao_viagem_TUB_HP) +
@@ -212,17 +116,17 @@ ggplot(duracao_viagem_TUB_HP) +
           color = "grey30") +
   theme_bw()
 
-# 2. num domingo de tarde
+# 2. num domingo de noite
 # filtramos os dados para o próximo Domingo entre as 21h30 e as 22h30
 stop_times_tub2 = filter_stop_times(TUB, "2025-06-01", "20:00:00", "22:00:00")
 duracao_viagem2 = travel_times(stop_times_tub2, "MONSENHOR AIROSA", stop_dist_check = FALSE)
 
 summary(duracao_viagem2$travel_time/60) # resumo em minutos
+# só 398 viagens
 
 duracao_viagem_TUB_Dom = ESTACOES_tub |> 
   left_join(duracao_viagem2, by = c("stop_id" = "to_stop_id")) |>  # juntar os dados 
   filter(transfers >= 1) |> # remover viagens com mais de 1 transferência
-  filter(!is.na(travel_time)) |>  # remover as plataformas não usadas
   filter(travel_time < 60*60) |>  # remover viagens com mais de 60 minutos
   mutate(intervalo = case_when(
     travel_time < 15*60 ~ "até 15 min",

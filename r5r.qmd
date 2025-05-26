@@ -7,12 +7,6 @@ format:
 
 # Acessibilidade com r5r
 
-<!-- ::: callout-warning -->
-
-<!-- Página em construção -->
-
-<!-- ::: -->
-
 Com base nos dados **GTFS** do Metro e Carris, vamos estimar isócronas e acessibilidade à população residente em Lisboa, a partir da Baixa.
 
 Para tal, iremos usar o pacote [`r5r`](https://ipeagit.github.io/r5r/index.html) [@Pereira2021r5r].
@@ -23,7 +17,7 @@ O `r5r` cria um modelo através da combinação dos seguintes ficheiros na mesma
 -   GTFS[^r5r-2] dos vários operadores (1 único `.zip` ou vários)
 -   Modelo digital do terreno[^r5r-3] (`.tiff`), para impedâncias nos modos a pé e bicicleta
 
-[^r5r-1]: Ver como exportar no [capítulo anterior](road-networks.qmd#hot-export-tool).
+[^r5r-1]: Ver como exportar em [HOT export tool](https://rosamfelix.github.io/PGmob360/road-networks.qmd#hot-export-tool).
 
 [^r5r-2]: Opcional.
 

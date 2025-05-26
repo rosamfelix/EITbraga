@@ -19,6 +19,7 @@ book:
     - summary.qmd
     - open-data.qmd
     - gtfs.qmd
+    - gtfs_exercise.qmd
     - r5r.qmd
     - references.qmd
     - slides.qmd
