@@ -8,7 +8,9 @@ format:
 
 A União Europeia [define Dados Abertos](https://data.europa.eu/pt/dataeuropa-academy/what-open-data) como:
 
-> Os dados abertos (da administração) são as informações que os **organismos públicos** recolhem, produzem ou compram (também chamadas informações do setor público) e disponibilizam a **título gratuito** tendo em vista a sua reutilização para qualquer fim. A licença estabelece as condições de utilização. Os princípios que regem os dados abertos são descritos pormenorizadamente na [Definição de Conhecimento Aberto](http://opendefinition.org/).
+> Os dados abertos (da administração) são as informações que os **organismos públicos** recolhem, produzem ou compram (também chamadas informações do setor público) e disponibilizam a **título gratuito** tendo em vista a sua reutilização para qualquer fim.
+> A licença estabelece as condições de utilização.
+> Os princípios que regem os dados abertos são descritos pormenorizadamente na [Definição de Conhecimento Aberto](http://opendefinition.org/).
 >
 > As **vantagens** dos dados abertos são múltiplas e podem ir dos ganhos de eficiência das administrações públicas ao crescimento económico do setor privado passando pelo bem-estar-social em sentido lato.
 
@@ -29,7 +31,8 @@ Neste capítulo, vamos guiá-lo através das fontes de dados abertos para a aná
 
 ### União Europeia
 
-A diretiva ITS da Comissão Europeia (2010/40/EU) recomenda aos Estados-Membros que forneçam acesso a dados sobre transportes, de acordo com os stardards definidos pela CE. Os dados incluem não só dados sobre **transportes públicos**, mas também **redes rodoviárias**, parques de **estacionamento** e outras informações relacionadas com transportes.
+A diretiva ITS da Comissão Europeia (2010/40/EU) recomenda aos Estados-Membros que forneçam acesso a dados sobre transportes, de acordo com os stardards definidos pela CE.
+Os dados incluem não só dados sobre **transportes públicos**, mas também **redes rodoviárias**, parques de **estacionamento** e outras informações relacionadas com transportes.
 
 [List of the European Union members states with National Access Points for Transportation data](https://transport.ec.europa.eu/transport-themes/smart-mobility/road/its-directive-and-action-plan/national-access-points_en)
 
@@ -128,13 +131,16 @@ O ISCTE, no âmbito do [Plano Nacional de Administração Aberta](https://ogp.ep
 
 [![Curso gratuito sobre a utilização de plataformas de dados abertos (Português), do ISCTE](images/clipboard-935508586.png)](https://online-learning.iscte-iul.pt/bo/courses/plano-nacional-de-acao-de-administracao-aberta-pt)
 
-A AMA - Agência para a Modernização Administrativa disponibiliza também alguns vídeos sobre como usar o portal de dados abertos. Chamo a atenção para o "**Como publicar dados abertos**", acessível a qualquer entidade.
+A AMA - Agência para a Modernização Administrativa disponibiliza também alguns vídeos sobre como usar o portal de dados abertos.
+Chamo a atenção para o "**Como publicar dados abertos**", acessível a qualquer entidade.
 
 {{< video https://youtu.be/G7-qftX_org >}}
 
 ### Reutilização de dados abertos
 
-Qualquer pessoa ou entidade pode aceder a dados abertos (por definição). É recomendado, como boa prática, a **partilha dos resultados** que se obtiveram com a utilização de um conjunto de dados abertos. Tal permite inspirar outros utilizadores dos dados, bem como dar conhecimento à entidade que os partilhou trabalhos que podem ser realizados com esses dados - levando muitas vezes à descoberta de novas prespetivas sobre os dados.
+Qualquer pessoa ou entidade pode aceder a dados abertos (por definição).
+É recomendado, como boa prática, a **partilha dos resultados** que se obtiveram com a utilização de um conjunto de dados abertos.
+Tal permite inspirar outros utilizadores dos dados, bem como dar conhecimento à entidade que os partilhou trabalhos que podem ser realizados com esses dados - levando muitas vezes à descoberta de novas prespetivas sobre os dados.
 
 As reutilizações documentadas muitas vezes também partilham o **código utilizado** para tratamento e análise do conjunto de dados, permitindo a sua **replicabilidade** e adaptação / aplicação a **outros contextos**.
 
@@ -154,7 +160,8 @@ Exemplos de trabalhos realizados por reutilização de dados abertos:
 
 O Departamento de Transportes do Reino Unido (DfT) mantém uma importante base de dados com acidentes e colisões rodoviárias para todo o território - o [STATS19](https://www.data.gov.uk/dataset/25170a92-0736-4090-baea-bf6add82d118/gm-road-casualty-accidents-full-stats19-data), contendo dados uniformizados desde 1926 (centenas de milhares), que têm vindo a ser registados pela Polícia.
 
-Esta base de dados abertos é amplamente usada para definição de políticas públicas de segurança rodviária, e na academia, com a elaboração de vários dashbors e estudos que utilizam os dados. Exemplo:
+Esta base de dados abertos é amplamente usada para definição de políticas públicas de segurança rodviária, e na academia, com a elaboração de vários dashbors e estudos que utilizam os dados.
+Exemplo:
 
 -   [Interactive dashboard](https://maps.dft.gov.uk/road-casualties/index.html)
 
@@ -162,7 +169,8 @@ Esta base de dados abertos é amplamente usada para definição de políticas p�
 
 -   [Vision Zero public map](https://vzsw.traffweb.app/traffweb/1/PublicMap)
 
--   [Bikedata](https://bikedata.cyclestreets.net/) - Compilação de vários dados de mobilidade urbana, incluindo colisões por tipo, contagens de tráfego. Os dados podem ser filtrados e exportados.
+-   [Bikedata](https://bikedata.cyclestreets.net/) - Compilação de vários dados de mobilidade urbana, incluindo colisões por tipo, contagens de tráfego.
+    Os dados podem ser filtrados e exportados.
 
 -   [stats19](https://itsleeds.github.io/stats19/) - Pacote R com todos os dados pré-tratados.
 

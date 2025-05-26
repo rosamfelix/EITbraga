@@ -1,8 +1,8 @@
 ---
 title: "Análise de GTFS"
-# format:
-#   pdf:
-#     prefer-html: true
+format:
+  pdf:
+    prefer-html: true
 ---
 
 ## Pacotes de R
