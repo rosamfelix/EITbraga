@@ -4,7 +4,7 @@ Materiais e dados para a aula de **GTFS e outros dados abertos para planeamento 
 
 <p> </p>
 
-![](images/EIT_logo-EU1-horizontal_1.png){fig-align="center"}
+![](images/EIT_logo-EU1-horizontal_1.png){fig-align="center" width="800"}
 
 <p> </p>
 
